@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>License</title>
+    <link rel="stylesheet" href="/css/admin/adminHeader.css" />
+    <link rel="stylesheet" href="/css/admin/adminLicense.css" />
+    <link rel="stylesheet" href="/css/admin/adminModal.css" />
+    <script
+      src="https://kit.fontawesome.com/65f44f413a.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="container">
+          <ul>
+            <a href="/admin/home"><li id="home">Home</li></a>
+            <a href="/admin/mandiDetails"
+              ><li id="mandiDetails">Mandi Details</li></a
+            >
+            <a href="/admin/rolesAndPermission"
+              ><li id="rolesAndPermission">Roles and Permissions</li></a
+            >
+            <a href="/admin/license"
+              ><li id="license" class="menu_active">License</li></a
+            >
+            <a href="/admin/users"><li id="users">Users</li></a>
+          </ul>
+          <div class="profile_menu">
+            <button>Profile</button>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <section class="main_section">
+        <div id="loading_spinner">
+          <img src="/images/loading7.gif" alt="Loading..." />
+        </div>
+        <div id="main_section_container"></div>
+      </section>
+    </main>
+
+    <div class="modal_container" id="modal_container">
+      <div class="modal">
+        <h1 id="modal_title"></h1>
+
+        <div class="modal_footer">
+          <button id="modal_close">Cancel</button>
+          <button id="modal_action_button">Delete</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.5.0/axios.min.js"></script>
+    <script src="/js/admin/adminLicense.js"></script>
+  </body>
+</html>

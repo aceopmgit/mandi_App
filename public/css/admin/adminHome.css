@@ -1,0 +1,168 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+html {
+  font-size: 62.5%;
+}
+html,
+body {
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  line-height: 1.4;
+  scroll-behavior: smooth;
+}
+.container {
+  max-width: 90vw;
+  margin: 0 auto;
+}
+button {
+  padding: 10px 15px;
+  border: none;
+  transition: 0.2s ease-in-out;
+  border-radius: 4px;
+}
+button:hover {
+  opacity: 0.8;
+  transition: 0.2s ease-in-out;
+  cursor: pointer;
+}
+a {
+  text-decoration: none;
+}
+ul {
+  list-style: none;
+}
+
+/* header*/
+
+header {
+  background-color: #4a91d9;
+}
+nav .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+}
+nav ul {
+  display: flex;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+
+nav ul li {
+  color: #e7f3ff;
+  font-size: 2rem;
+  font-weight: 300;
+}
+
+nav ul li:hover {
+  color: white;
+}
+
+nav ul .menu_active {
+  color: white;
+  font-weight: 400;
+}
+
+.profile_menu {
+  max-width: 2rem;
+  border-radius: 50%;
+}
+/* main section */
+main {
+  display: flex;
+  padding: 2rem;
+  gap: 2rem;
+  background-color: rgb(221 227 229);
+}
+
+/* side section */
+.side_section {
+  border: 1px solid #ccc;
+  height: 100vh;
+  background-color: white;
+  min-width: 300px;
+  border-radius: 10px;
+  position: sticky;
+  top: 0;
+}
+.side_section ul {
+  margin-top: 6rem;
+  /* border-top: 1px solid #ccc; */
+  list-style: none;
+}
+.side_section ul li {
+  border-bottom: 1px solid #ccc;
+  padding: 10px;
+  color: black;
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+.side_section ul li:hover {
+  background: #ccc;
+  transition: 0.3s ease-in-out;
+}
+
+.main_section {
+  border: 1px solid #ccc;
+  height: 100vh;
+  width: calc(100% - 320px);
+  background-color: white;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+}
+.create_btn_div {
+  padding: 1rem;
+  /* border-bottom: 1px solid #ccc; */
+}
+.create_btn_div button {
+  background-color: #0279ff;
+  color: white;
+  float: right;
+}
+
+/* main section div */
+.main_section_content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: scroll;
+  /* overflow-x: scroll; */
+}
+
+.main_section_title {
+  display: flex;
+  margin-bottom: 2rem;
+  min-width: max-content;
+  box-shadow: 3px 5px 5px rgba(1, 1, 1, 0.2);
+  position: sticky;
+  top: 0;
+  background-color: white;
+}
+.main_section_title li {
+  padding: 1rem;
+  font-size: 2rem;
+  font-weight: 400;
+  min-width: 200px;
+}
+.main_section_data {
+  display: flex;
+  flex-direction: column;
+}
+
+.main_section_data_part {
+  display: flex;
+  min-width: max-content;
+  border-bottom: 1px solid #ccc;
+}
+.main_section_data_part li {
+  padding: 1rem;
+  font-size: 2rem;
+  font-weight: 400;
+  min-width: 200px;
+}

@@ -1,0 +1,91 @@
+.u-container {
+  width: 100vw;
+  display: flex;
+  height: calc(100vh - 70px);
+}
+
+.part1 {
+  width: 20vw;
+  min-width: 15vh;
+  background-color: blue;
+}
+
+.part1-btn {
+  width: 94%;
+  background-color: white;
+  color: black;
+  margin: 2px 10px;
+  height: 40px;
+  border: none;
+  border-radius: 5px;
+}
+.part1-btn:hover {
+  background-color: lightblue;
+  cursor: pointer;
+  border: 1px solid rgb(133, 133, 244);
+}
+
+.part2 {
+  width: 80vw;
+  min-width: 75vw;
+  background-color: lightpink;
+}
+
+.part-2-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 30px;
+  padding-left: 30px;
+}
+#part2-addButton {
+  width: 30px;
+  padding-bottom: 3px;
+  border-radius: 15px;
+  border: none;
+  cursor: pointer;
+  background-color: rgb(208, 205, 205);
+  font-size: 18px;
+  font-weight: bolder;
+}
+#part2-title {
+  font-size: 25px;
+  font-weight: 500;
+}
+
+.part2-body-empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.part2-body-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 30px;
+  padding-left: 30px;
+  background-color: white;
+  margin-left: 10px;
+  margin-bottom: -15px;
+  border-radius: 10px;
+  width: 96%;
+}
+
+.part2-listItem {
+  margin-top: 10px;
+  font-size: 20px;
+  font-weight: 350;
+}
+
+.part2-listItem-deleteBtn {
+  width: 30px;
+  padding-bottom: 3px;
+  border-radius: 15px;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+  color: black;
+  background-color: none;
+}

@@ -1,0 +1,119 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+html {
+  font-size: 62.5%;
+}
+html,
+body {
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  line-height: 1.4;
+  scroll-behavior: smooth;
+}
+.container {
+  max-width: 90vw;
+  margin: 0 auto;
+}
+button {
+  padding: 1rem 2rem 1rem 2rem;
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: #fff;
+  border: none;
+  transition: 0.2s ease-in-out;
+  border-radius: 4px;
+  background-color: #ccc;
+}
+button:hover {
+  opacity: 0.8;
+  transition: 0.2s ease-in-out;
+  cursor: pointer;
+}
+a {
+  text-decoration: none;
+}
+ul {
+  list-style: none;
+}
+
+/* header*/
+
+header {
+  background-color: #4a91d9;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+nav .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+}
+nav ul {
+  display: flex;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+
+nav ul li {
+  color: #e7f3ff;
+  font-size: 2rem;
+  font-weight: 300;
+}
+
+nav ul li:hover {
+  color: white;
+}
+
+nav ul .menu_active {
+  color: white;
+  font-weight: 400;
+}
+
+.submitBtn,
+#cancelBtn,
+.editBtn,
+.deleteBtn,
+#modal_close,
+#modal_action_button {
+  background: #1c78d4;
+  color: #fff;
+}
+
+#cancelBtn,
+#modal_close {
+  background: #91cbff;
+  color: black;
+}
+.deleteBtn,
+#modal_action_button {
+  background-color: #f60014;
+}
+
+.backBtn {
+  color: black;
+  background-color: white;
+}
+.backBtn:hover {
+  text-decoration: underline;
+}
+
+.form_content {
+  display: flex;
+  flex-direction: column;
+}
+
+.form_control {
+  display: flex;
+  width: 100%;
+  gap: 1rem;
+}
+label {
+  font-size: 2rem;
+  font-weight: 400;
+}

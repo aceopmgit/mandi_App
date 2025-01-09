@@ -1,0 +1,232 @@
+/* General Styling */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Prevent scrolling */
+}
+
+/* Background Image */
+.background-image {
+  background-image: url("https://kisanvedika.bighaat.com/wp-content/uploads/2023/06/piece-golden-rice-rice-waiting-be-harvested-2.jpg");
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.6); /* Increase transparency */
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+/* Form Container */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.form-container {
+  width: 90%;
+  max-width: 420px;
+  padding: 30px;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-container:hover {
+  transform: scale(1.02);
+  box-shadow: 0px 12px 20px rgba(0, 0, 0, 0.3);
+}
+
+h3 {
+  text-align: center;
+  margin-bottom: 10px;
+  color: #222;
+  font-weight: bold;
+}
+
+h4.system-name {
+  text-align: center;
+  font-size: 26px;
+  color: transparent;
+  background: linear-gradient(90deg, #4cdb28, #2c9e1b);
+  -webkit-background-clip: text;
+  margin-bottom: 15px;
+}
+
+hr {
+  margin: 15px 0;
+}
+
+/* Input Group */
+.input-group {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.input-group i {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px;
+  color: #888;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 12px 15px 12px 40px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #444;
+  transition: all 0.3s ease;
+  box-sizing: border-box; /* Prevents overflow */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; /* Prevents overflow in the placeholder */
+}
+
+.input-group input:focus {
+  border: 1px solid #4cdb28;
+  outline: none;
+}
+
+.input-group input::placeholder {
+  color: #bbb;
+  font-size: 14px;
+  font-style: italic;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; /* Prevents overflow */
+}
+
+/* Button Styles */
+button {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  background: #4cdb28;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background: #2c9e1b;
+}
+
+/* Links Section */
+.links {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.links a {
+  display: inline-block;
+  margin: 5px 10px;
+  font-size: 14px;
+  color: #4cdb28;
+  transition: color 0.3s ease;
+}
+
+.links a:hover {
+  color: #2c9e1b;
+}
+
+/* Contact Bubble */
+.contact-bubble {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contact-bubble img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures the image covers the bubble without distortion */
+  border-radius: 50%; /* Ensures the image is round */
+}
+
+/* Contact Form Popup */
+.contact-form-popup {
+  display: none;
+  position: fixed;
+  bottom: 100px;
+  right: 20px;
+  width: 300px;
+  padding: 20px;
+  background: white;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  z-index: 1000;
+}
+
+.contact-form-popup h4 {
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+.contact-form-popup label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.contact-form-popup input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.contact-form-popup button {
+  background: #4cdb28;
+  color: white;
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+}
+
+.contact-form-popup button:hover {
+  background: #2c9e1b;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+  .form-container {
+    padding: 20px;
+    border-radius: 10px;
+  }
+
+  h4.system-name {
+    font-size: 22px;
+  }
+
+  .input-group input {
+    font-size: 14px;
+    padding: 10px 10px 10px 35px;
+  }
+
+  button {
+    font-size: 14px;
+    padding: 10px;
+  }
+}

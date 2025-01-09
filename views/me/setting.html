@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SocialBook</title>
+    <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://kit.fontawesome.com/65f44f413a.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <nav>
+      <div class="nav_left">
+        <a href="index.html">
+          <img src="./images/logo.png" alt="logo" class="logo" />
+        </a>
+        <ul>
+          <li><img src="./images/notification.png" alt="notification" /></li>
+          <li><img src="./images/inbox.png" alt="inbox" /></li>
+          <li><img src="./images/video.png" alt="video" /></li>
+        </ul>
+      </div>
+
+      <div class="nav_right">
+        <div class="search_box">
+          <img src="./images/search.png" alt="search" />
+          <input type="text" placeholder="Search..." />
+        </div>
+        <div class="nav_user_icon online" onclick="settingsMenuToggle()">
+          <img src="./images/profile-pic.png" alt="profile pic" />
+        </div>
+      </div>
+
+      <!-- settings menu -->
+      <div class="settings_menu">
+        <div id="dark_btn">
+          <span></span>
+        </div>
+        <div class="settings_menu_inner">
+          <div class="user_profile">
+            <img src="./images/profile-pic.png" alt="profile pic" />
+            <div>
+              <p>John Nicholson</p>
+              <a href="profile.html">See your profile</a>
+            </div>
+          </div>
+
+          <div class="user_profile">
+            <img src="./images/feedback.png" alt="feedback pic" />
+            <div>
+              <p>Give Feedback</p>
+              <a href="#">Help us improve the new Design</a>
+            </div>
+          </div>
+
+          <div class="setting_links">
+            <img
+              src="images/setting.png"
+              alt="settings"
+              class="settings_icon"
+            />
+            <a href="#">
+              Settings & privacy
+              <img src="images/arrow.png" alt="arrow" width="10px" />
+            </a>
+          </div>
+
+          <div class="setting_links">
+            <img src="images/help.png" alt="help" class="settings_icon" />
+            <a href="#">
+              Help & Support
+              <img src="images/arrow.png" alt="arrow" width="10px" />
+            </a>
+          </div>
+
+          <div class="setting_links">
+            <img src="images/display.png" alt="display" class="settings_icon" />
+            <a href="#">
+              Dispaly & Accessibility
+              <img src="images/arrow.png" alt="arrow" width="10px" />
+            </a>
+          </div>
+
+          <div class="setting_links">
+            <img src="images/logout.png" alt="logout" class="settings_icon" />
+            <a href="#">
+              Logout
+              <img src="images/arrow.png" alt="arrow" width="10px" />
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+      <!-- ---------------left sidebar--------------- -->
+      <div class="left_sidebar">
+        <div class="imp_links">
+          <a href="#"><img src="./images/news.png" alt="news" />Latest News</a>
+          <a href="#"
+            ><img src="./images/friends.png" alt="friends" />Friends</a
+          >
+          <a href="#"><img src="./images/group.png" alt="group" />Group</a>
+          <a href="#"
+            ><img
+              src="./images/marketplace.png"
+              alt="marketplace"
+            />marketplace</a
+          >
+          <a href="#"><img src="./images/watch.png" alt="watch" />Watch</a>
+          <a href="#">See More</a>
+        </div>
+        <div class="shortcut_links">
+          <p>Your Shortcuts</p>
+          <a href="#"
+            ><img src="./images/shortcut-1.png" alt="shortcut 1" />Web
+            Developers</a
+          >
+          <a href="#"
+            ><img src="./images/shortcut-2.png" alt="shortcut 1" />Web Design
+            Course</a
+          >
+          <a href="#"
+            ><img src="./images/shortcut-3.png" alt="shortcut 1" />Full Stack
+            Developement</a
+          >
+          <a href="#"
+            ><img src="./images/shortcut-4.png" alt="shortcut 1" />Website
+            Experts</a
+          >
+        </div>
+      </div>
+      <!-- ---------------main content--------------- -->
+      <div class="main_content">
+        <div class="story_gallery">
+          <div class="story story1">
+            <img src="./images/upload.png" alt="upload" />
+            <p>Post Story</p>
+          </div>
+
+          <div class="story story2">
+            <img src="./images/member-1.png" alt="member pic" />
+            <p>Alison</p>
+          </div>
+
+          <div class="story story3">
+            <img src="./images/member-2.png" alt="member pic" />
+            <p>Jackson</p>
+          </div>
+
+          <div class="story story4">
+            <img src="./images/member-3.png" alt="member pic" />
+            <p>Samona</p>
+          </div>
+
+          <div class="story story5">
+            <img src="./images/member-4.png" alt="member pic" />
+            <p>John Doe</p>
+          </div>
+        </div>
+
+        <div class="write_post_container">
+          <div class="user_profile">
+            <img src="./images/profile-pic.png" alt="profile pic" />
+            <div>
+              <p>John Nicholson</p>
+              <small>Public <i class="fas fa-caret-down"></i></small>
+            </div>
+          </div>
+
+          <div class="post_input_container">
+            <textarea
+              rows="3"
+              placeholder="What's on your Mind John?"
+            ></textarea>
+            <div class="add_post_links">
+              <a href="#"
+                ><img src="./images/live-video.png" alt="video image" />Live
+                Video</a
+              >
+              <a href="#"
+                ><img src="./images/photo.png" alt="video image" />Photo
+                Video</a
+              >
+              <a href="#"
+                ><img src="./images/feeling.png" alt="video image" />Feeling
+                Activity</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="post_container">
+          <div class="post_row">
+            <div class="user_profile">
+              <img src="./images/profile-pic.png" alt="profile pic" />
+              <div>
+                <p>John Nicholson</p>
+                <span>June 16 2023,15:40pm</span>
+              </div>
+            </div>
+            <a href="#"><i class="fas fa-ellipsis-v"></i></a>
+          </div>
+
+          <p class="post_text">
+            Lorem ipsum dolor sit,<span>@consectetur</span>
+            amet adipisicing elit. Magnam ipsa ipsum deserunt unde nihil dolorum
+            qui. Pariatur minima fugiat placeat?
+            <a href="#">#SocialBook </a><a href="#">#Trending</a>
+          </p>
+          <img
+            src="./images/feed-image-1.png"
+            alt="feed-image-1"
+            class="post_img"
+          />
+
+          <div class="post_row">
+            <div class="activity_icons">
+              <div><img src="images/like-blue.png" alt="like icon" />120</div>
+              <div><img src="images/comments.png" alt=" comment icon" />45</div>
+              <div><img src="images/share.png" alt="share icon" />20</div>
+            </div>
+            <div class="post_profile_icon">
+              <img src="./images/profile-pic.png" alt="" /><i
+                class="fas fa-caret-down"
+              ></i>
+            </div>
+          </div>
+        </div>
+
+        <div class="post_container">
+          <div class="post_row">
+            <div class="user_profile">
+              <img src="./images/profile-pic.png" alt="profile pic" />
+              <div>
+                <p>John Nicholson</p>
+                <span>jully 5 2023,18:13pm</span>
+              </div>
+            </div>
+            <a href="#"><i class="fas fa-ellipsis-v"></i></a>
+          </div>
+
+          <p class="post_text">
+            Lorem ipsum dolor sit,<span>@consectetur</span>
+            amet adipisicing elit. Magnam ipsa ipsum deserunt unde nihil dolorum
+            qui. Pariatur minima fugiat placeat?
+            <a href="#">#travel </a><a href="#">#music</a>
+          </p>
+          <img
+            src="./images/feed-image-2.png"
+            alt="feed-image-2"
+            class="post_img"
+          />
+
+          <div class="post_row">
+            <div class="activity_icons">
+              <div><img src="images/like.png" alt="like icon" />63</div>
+              <div><img src="images/comments.png" alt=" comment icon" />29</div>
+              <div><img src="images/share.png" alt="share icon" />8</div>
+            </div>
+            <div class="post_profile_icon">
+              <img src="./images/profile-pic.png" alt="" /><i
+                class="fas fa-caret-down"
+              ></i>
+            </div>
+          </div>
+        </div>
+
+        <div class="post_container">
+          <div class="post_row">
+            <div class="user_profile">
+              <img src="./images/profile-pic.png" alt="profile pic" />
+              <div>
+                <p>John Nicholson</p>
+                <span>July 11 2023,14:03pm</span>
+              </div>
+            </div>
+            <a href="#"><i class="fas fa-ellipsis-v"></i></a>
+          </div>
+
+          <p class="post_text">
+            Lorem ipsum dolor sit,<span>@consectetur</span>
+            amet adipisicing elit. Magnam ipsa ipsum deserunt unde nihil dolorum
+            qui. Pariatur minima fugiat placeat?
+            <a href="#">#SocialBook </a><a href="#">#Trending</a>
+          </p>
+          <img
+            src="./images/feed-image-3.png"
+            alt="feed-image-3"
+            class="post_img"
+          />
+
+          <div class="post_row">
+            <div class="activity_icons">
+              <div><img src="images/like-blue.png" alt="like icon" />120</div>
+              <div><img src="images/comments.png" alt=" comment icon" />45</div>
+              <div><img src="images/share.png" alt="share icon" />20</div>
+            </div>
+            <div class="post_profile_icon">
+              <img src="./images/profile-pic.png" alt="" /><i
+                class="fas fa-caret-down"
+              ></i>
+            </div>
+          </div>
+        </div>
+
+        <div class="post_container">
+          <div class="post_row">
+            <div class="user_profile">
+              <img src="./images/profile-pic.png" alt="profile pic" />
+              <div>
+                <p>John Nicholson</p>
+                <span>June 16 2023,15:40pm</span>
+              </div>
+            </div>
+            <a href="#"><i class="fas fa-ellipsis-v"></i></a>
+          </div>
+
+          <p class="post_text">
+            Lorem ipsum dolor sit,<span>@consectetur</span>
+            amet adipisicing elit. Magnam ipsa ipsum deserunt unde nihil dolorum
+            qui. Pariatur minima fugiat placeat?
+            <a href="#">#SocialBook </a><a href="#">#Trending</a>
+          </p>
+          <img
+            src="./images/feed-image-4.png"
+            alt="feed-image-4"
+            class="post_img"
+          />
+
+          <div class="post_row">
+            <div class="activity_icons">
+              <div><img src="images/like-blue.png" alt="like icon" />120</div>
+              <div><img src="images/comments.png" alt=" comment icon" />45</div>
+              <div><img src="images/share.png" alt="share icon" />20</div>
+            </div>
+            <div class="post_profile_icon">
+              <img src="./images/profile-pic.png" alt="" /><i
+                class="fas fa-caret-down"
+              ></i>
+            </div>
+          </div>
+        </div>
+
+        <div class="post_container">
+          <div class="post_row">
+            <div class="user_profile">
+              <img src="./images/profile-pic.png" alt="profile pic" />
+              <div>
+                <p>John Nicholson</p>
+                <span>June 16 2023,15:40pm</span>
+              </div>
+            </div>
+            <a href="#"><i class="fas fa-ellipsis-v"></i></a>
+          </div>
+
+          <p class="post_text">
+            Lorem ipsum dolor sit,<span>@consectetur</span>
+            amet adipisicing elit. Magnam ipsa ipsum deserunt unde nihil dolorum
+            qui. Pariatur minima fugiat placeat?
+            <a href="#">#SocialBook </a><a href="#">#Trending</a>
+          </p>
+          <img
+            src="./images/feed-image-5.png"
+            alt="feed-image-1"
+            class="post_img"
+          />
+
+          <div class="post_row">
+            <div class="activity_icons">
+              <div><img src="images/like-blue.png" alt="like icon" />120</div>
+              <div><img src="images/comments.png" alt=" comment icon" />45</div>
+              <div><img src="images/share.png" alt="share icon" />20</div>
+            </div>
+            <div class="post_profile_icon">
+              <img src="./images/profile-pic.png" alt="" /><i
+                class="fas fa-caret-down"
+              ></i>
+            </div>
+          </div>
+        </div>
+
+        <button type="button" class="load_more_btn">Load More</button>
+      </div>
+
+      <!-- ---------------right sidebar--------------- -->
+      <div class="right_sidebar">
+        <div class="sidebar__title">
+          <h4>Events</h4>
+          <a href="#">See All</a>
+        </div>
+
+        <div class="event">
+          <div class="left_event">
+            <h3>18</h3>
+            <span>March</span>
+          </div>
+          <div class="right_event">
+            <h4>Social Media</h4>
+            <p><i class="fas fa-map-marker-alt"></i> Willson Tech Park</p>
+            <a href="#">More Info</a>
+          </div>
+        </div>
+
+        <div class="event">
+          <div class="left_event">
+            <h3>22</h3>
+            <span>June</span>
+          </div>
+          <div class="right_event">
+            <h4>Mobile Marketing</h4>
+            <p><i class="fas fa-map-marker-alt"></i> Willson Tech Park</p>
+            <a href="#">More Info</a>
+          </div>
+        </div>
+
+        <div class="sidebar__title">
+          <h4>Advertisements</h4>
+          <a href="#">Close</a>
+        </div>
+        <img
+          src="./images/advertisement.png"
+          alt="advertisement"
+          class="sidebar_ads"
+        />
+
+        <div class="sidebar__title">
+          <h4>Convertsation</h4>
+          <a href="#">Hide Chat</a>
+        </div>
+
+        <div class="online_list">
+          <div class="online">
+            <img src="./images/member-1.png" alt="member-1" />
+          </div>
+          <p>Alison Mina</p>
+        </div>
+
+        <div class="online_list">
+          <div class="online">
+            <img src="./images/member-2.png" alt="member-2" />
+          </div>
+          <p>Jackson Aston</p>
+        </div>
+
+        <div class="online_list">
+          <div class="online">
+            <img src="./images/member-3.png" alt="member-3" />
+          </div>
+          <p>Samona Rose</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer"><p>Copyright 2024-Ace Creations</p></div>
+    <script src="script.js"></script>
+  </body>
+</html>

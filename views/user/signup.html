@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create New Account</title>
+    <script
+      src="https://kit.fontawesome.com/65f44f413a.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="/css/user/signup.css" />
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <a href="/">
+          <div class="logo">
+            <img src="images/newLogo.png" alt="logo" />
+            <h2 class="logo_text">Mandi Management</h2>
+          </div>
+        </a>
+        <div class="nav_menu">
+          <a href="/login">
+            <button class="login_button">
+              <!-- <i class="fa fa-user"></i> -->
+              Sign In
+            </button>
+          </a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <div class="hero_section">
+        <form id="signupForm">
+          <div class="form_container">
+            <h1>Start with your free account today.</h1>
+            <div class="form_control">
+              <label for="name">Enter Name</label>
+              <input
+                type="text"
+                id="sname"
+                name="sname"
+                placeholder="Name"
+                autofocus
+                required
+              />
+            </div>
+            <div class="form_control">
+              <label for="email">Enter Email</label>
+              <input
+                type="email"
+                id="semail"
+                name="Email"
+                placeholder="Email"
+                required
+              />
+            </div>
+            <div class="form_control">
+              <label for="phone">Enter Phone</label>
+              <input
+                type="tel"
+                id="sphone"
+                name="Phone"
+                placeholder="Phone"
+                required
+              />
+              <br />
+            </div>
+
+            <div class="form_control">
+              <label for="password">Enter Password</label>
+              <input
+                type="password"
+                id="spassword"
+                name="Password"
+                placeholder="Enter Password"
+                required
+              />
+            </div>
+            <div class="form_control">
+              <label for="password">Confirm Password</label>
+              <input
+                type="password"
+                id="cpassword"
+                name="Password"
+                placeholder="Confirm Password"
+                required
+              />
+            </div>
+
+            <p style="color: red; font-size: 15px" id="signupError"></p>
+            <button class="" type="submit" form="signupForm">
+              Signup For Free
+            </button>
+          </div>
+        </form>
+      </div>
+    </main>
+    <footer>Copyright © A 2024 Company</footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.5.0/axios.min.js"></script>
+    <script type="module" src="/js/user/signup.js"></script>
+  </body>
+</html>

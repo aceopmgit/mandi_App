@@ -1,0 +1,144 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+html {
+  font-size: 62.5%;
+}
+html,
+body {
+  height: 100%; /* Ensure the body stretches to fill the viewport */
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  line-height: 1.4;
+}
+
+body {
+  display: flex;
+  flex-direction: column; /* Stack header, main, and footer vertically */
+  margin: 0;
+}
+
+header,
+footer {
+  flex-shrink: 0; /* Prevent the header and footer from shrinking */
+}
+
+button {
+  padding: 10px 15px;
+  border: none;
+  transition: 0.2s ease-in-out;
+  border-radius: 4px;
+}
+button:hover {
+  opacity: 0.8;
+  transition: 0.2s ease-in-out;
+  cursor: pointer;
+}
+a {
+  text-decoration: none;
+}
+header {
+  /* background-color: var(--purple300); */
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 5px 5px 5px rgba(1, 1, 1, 0.5);
+  background-color: white;
+}
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 50px;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+}
+.logo img {
+  height: 5vh;
+}
+.logo_text {
+  font-size: 3rem;
+  color: black;
+}
+
+.nav_menu {
+  display: flex;
+  gap: 2em;
+}
+.login_button,
+.signup_button {
+  display: flex;
+  gap: 0.5em;
+  border: rgb(254, 12, 12) 1px solid;
+  background-color: white;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #f60014;
+}
+
+.login_button:hover,
+.signup_button:hover {
+  background-color: #f60014;
+  color: white;
+}
+
+/* hero section */
+main {
+  flex-grow: 1; /* Allow main to take up all the remaining space */
+  display: flex;
+}
+
+.hero_section {
+  flex-grow: 1; /* Allow hero_section to stretch inside main */
+  background-color: rgb(221 227 229);
+  display: flex;
+  align-items: center; /* Vertically center content */
+  justify-content: center; /* Horizontally center content */
+}
+.hero_section h1 {
+  font-size: 6rem;
+}
+
+/* footer section */
+
+footer {
+  text-align: center;
+  text-transform: uppercase;
+  background: #000;
+  color: white;
+  padding: 20px;
+  font-size: 2rem;
+}
+
+/* media queries */
+@media (max-width: 600px) {
+  html {
+    font-size: 45%;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 749px) {
+  html {
+    font-size: 45%;
+  }
+}
+
+@media (min-width: 750px) and (max-width: 999px) {
+  html {
+    font-size: 45%;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1200px) {
+  html {
+    font-size: 45%;
+  }
+}

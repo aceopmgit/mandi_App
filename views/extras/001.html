@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - Mandi Management</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="background-image"></div>
+
+    <div class="container">
+      <div class="form-container">
+        <h3>Login to your Mandi Management Account</h3>
+        <h4 class="system-name">Mandi Management System</h4>
+        <hr />
+        <form>
+          <div class="input-group">
+            <i class="fas fa-envelope"></i>
+            <input type="email" placeholder="Email/Username" required />
+          </div>
+          <div class="input-group">
+            <i class="fas fa-lock"></i>
+            <input type="password" placeholder="Password" required />
+          </div>
+          <button type="submit" class="login-btn">Login</button>
+          <div class="links">
+            <a href="/signup" class="signup-btn"
+              >New User? Click here to Sign Up</a
+            >
+            <a href="/forgot-password" class="forgot-password"
+              >Forgot Password?</a
+            >
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Contact Us Bubble -->
+    <div class="contact-bubble" id="contact-bubble">
+      <img
+        src="https://img.pikbest.com/wp/202347/hands-raised-cartoon-hand-adorable-ai-robot-in-3d-rendering_9760458.jpg!bw700"
+        alt="Contact Us"
+      />
+    </div>
+
+    <!-- Contact Us Form -->
+    <div id="contact-form-popup" class="contact-form-popup">
+      <div class="popup-content">
+        <button id="close-popup" class="close-btn">X</button>
+        <form id="contact-form">
+          <h4>Contact Us</h4>
+          <label for="name">Name:</label>
+          <input type="text" id="name" placeholder="Enter your name" required />
+          <label for="email">Email:</label>
+          <input
+            type="email"
+            id="email"
+            placeholder="Enter your email"
+            required
+          />
+          <label for="phone">Phone:</label>
+          <input
+            type="tel"
+            id="phone"
+            placeholder="Enter your phone number"
+            required
+          />
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <link rel="stylesheet" href="/css/user/userViewMenuItem.css" />
+    <link rel="stylesheet" href="/css/admin/adminModal.css" />
+    <script
+      src="https://kit.fontawesome.com/65f44f413a.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <header>
+      <div class="main_header">
+        <a href="/home">
+          <div class="logo">
+            <img src="/images/newLogo.png" alt="logo" />
+            <h2 class="logo_text">Mandi Management</h2>
+          </div>
+        </a>
+        <div class="main_header_settings">
+          <img src="/images/setting.png" alt="setting" id="settings_icon" />
+          <img src="/images/profile.png" alt="profile" id="profile_icon" />
+        </div>
+      </div>
+
+      <!--settings menu  -->
+      <div class="settings_menu" id="setting_menu">
+        <div class="settings_menu_inner">
+          <div class="setting_links">
+            <img
+              src="/images/setting.png"
+              alt="settings"
+              class="settings_icon"
+            />
+            <a href="/home/manage-account">
+              Manage Account
+              <img src="/images/arrow.png" alt="arrow" width="10px" />
+            </a>
+          </div>
+
+          <div class="setting_links">
+            <img src="/images/users.png" alt="logout" class="settings_icon" />
+            <a href="/home/manageUsers">
+              Manage Users
+              <img src="/images/arrow.png" alt="arrow" width="10px" />
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- profile  menu -->
+      <div class="settings_menu" id="profile_menu">
+        <!-- <div id="dark_btn">
+          <span></span>
+        </div> -->
+        <div class="settings_menu_inner">
+          <div class="user_profile">
+            <img src="/images/profile.png" alt="profile" />
+            <div>
+              <p id="profile_name">User Name</p>
+              <a href="/home/profile">See Your Profile</a>
+            </div>
+          </div>
+
+          <div class="setting_links">
+            <img
+              src="/images/setting.png"
+              alt="settings"
+              class="settings_icon"
+            />
+            <a href="#">
+              Settings & privacy
+              <img src="/images/arrow.png" alt="arrow" width="10px" />
+            </a>
+          </div>
+
+          <div class="setting_links">
+            <img src="/images/logout.png" alt="logout" class="settings_icon" />
+            <a id="logout">
+              Logout
+              <img src="/images/arrow.png" alt="arrow" width="10px" />
+            </a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div class="menu_action">
+        <!-- <h1 id="menu_title"></h1> -->
+        <button id="goBack" class="backBtn">
+          <i class="fa fa-arrow-left" aria-hidden="true"></i> Go Back
+        </button>
+        <div id="button_container"></div>
+      </div>
+
+      <div class="details_section">
+        <div id="loading_spinner">
+          <img src="/images/loading7.gif" alt="Loading..." />
+        </div>
+        <h1 id="menu_title"></h1>
+        <br />
+        <br />
+        <div id="details_section_content"></div>
+      </div>
+    </main>
+
+    <!-- <div class="modal_container" id="modal_container">
+      <div class="modal">
+        <h1 id="modal_title"></h1>
+
+        <div id="modal_footer" class="modal_footer"></div>
+      </div>
+    </div> -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.5.0/axios.min.js"></script>
+    <script src="/js/user/headerSettings.js"></script>
+    <script type="module" src="/js/user/userViewMenuItem.js"></script>
+  </body>
+</html>

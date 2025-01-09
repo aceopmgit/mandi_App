@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/user/header.css" />
+    <link rel="stylesheet" href="/css/user/home.css" />
+    <script
+      src="https://kit.fontawesome.com/65f44f413a.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>Mandi Management - Home</title>
+  </head>
+  <body>
+    <header>
+      <div class="main_header">
+        <a href="/home">
+          <div class="logo">
+            <img src="/images/newLogo.png" alt="logo" />
+            <h2 class="logo_text">Mandi Management</h2>
+          </div>
+        </a>
+        <div class="main_header_settings">
+          <img src="/images/setting.png" alt="setting" id="settings_icon" />
+          <img src="/images/profile.png" alt="profile" id="profile_icon" />
+        </div>
+      </div>
+
+      <!--settings menu  -->
+      <div class="settings_menu" id="setting_menu">
+        <div class="settings_menu_inner">
+          <div class="setting_links">
+            <img
+              src="/images/setting.png"
+              alt="settings"
+              class="settings_icon"
+            />
+            <a href="/home/manage-account">
+              Manage Account
+              <img src="/images/arrow.png" alt="arrow" width="10px" />
+            </a>
+          </div>
+
+          <div class="setting_links">
+            <img src="/images/users.png" alt="logout" class="settings_icon" />
+            <a href="/home/manageUsers">
+              Manage Users
+              <img src="/images/arrow.png" alt="arrow" width="10px" />
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- profile  menu -->
+      <div class="settings_menu" id="profile_menu">
+        <!-- <div id="dark_btn">
+          <span></span>
+        </div> -->
+        <div class="settings_menu_inner">
+          <div class="user_profile">
+            <img src="images/profile.png" alt="profile" />
+            <div>
+              <p id="profile_name">User Name</p>
+              <a href="/home/profile">See Your Profile</a>
+            </div>
+          </div>
+
+          <div class="setting_links">
+            <img
+              src="images/setting.png"
+              alt="settings"
+              class="settings_icon"
+            />
+            <a href="#">
+              Settings & privacy
+              <img src="images/arrow.png" alt="arrow" width="10px" />
+            </a>
+          </div>
+
+          <div class="setting_links">
+            <img src="images/logout.png" alt="logout" class="settings_icon" />
+            <a href="#">
+              Logout
+              <img src="images/arrow.png" alt="arrow" width="10px" />
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <nav>
+        <div class="container">
+          <ul>
+            <a href="/home/dasboard"><li class="menu_active">Home</li></a>
+            <a href="/home/paddyManagement"><li>Paddy Management</li></a>
+            <a href="/home/riceManagement"><li>Rice Management</li></a>
+            <a href="/home/reports"><li>Reports</li></a>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <main></main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.5.0/axios.min.js"></script>
+    <script src="/js/user/headerSettings.js"></script>
+  </body>
+</html>

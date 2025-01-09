@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <link rel="stylesheet" href="/css/home.css" />
+    <link rel="stylesheet" href="/css/report.css" />
+    <!-- <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    /> -->
+  </head>
+  <body>
+    <nav class="u-navbar">
+      <div class="brand">
+        <img src="/images/logo.png" alt="Brand Logo" class="logo" />
+        <span class="brand-name">Mandi Management</span>
+      </div>
+    </nav>
+    <div class="u-menu-bar">
+      <ul class="menu-list">
+        <li class="menu-item">
+          <a href="/home" class="menu-link">Home</a>
+        </li>
+        <li class="menu-item">
+          <a class="menu-link" href="/home/userInput">User Input</a>
+        </li>
+        <li class="menu-item">
+          <a class="menu-link" href="/home/forms">Forms</a>
+        </li>
+        <li class="menu-item">
+          <a class="menu-link-active" href="/home/report">Report</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="u-container">
+      <div class="part1">
+        <button class="part1-btn" id="master-report-btn">
+          Mandi Master Report
+        </button>
+        <button class="part1-btn" id="mandiPurchase-report-btn">
+          Mandi Purchase Report
+        </button>
+        <button class="part1-btn" id="loading-report-btn">
+          Mandi Loading Report
+        </button>
+        <button class="part1-btn" id="directTraders-report-btn">
+          Direct Traders Report
+        </button>
+      </div>
+
+      <div class="part2"></div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.5.0/axios.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script type="module" src="/js/user/report.js"></script>
+  </body>
+</html>

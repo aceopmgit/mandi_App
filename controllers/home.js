@@ -8,6 +8,7 @@ const Admin = require("../models/Admin");
 const AdminForgetPassword = require("../models/AdminForgotPassword");
 const Company = require("../models/Company");
 const CompanyLocation = require("../models/CompanyLocation");
+const CompanyDistrict = require("../models/CompanyDistrict.js");
 const DeliveryCertificate = require("../models/DeliveryCertificate");
 const Depot = require("../models/Depot");
 const DirectTrader = require("../models/DirectTrader");
@@ -620,20 +621,500 @@ exports.accountInfo = asyncErrorHandler(async (req, res, next) => {
   });
 });
 
-exports.userStates = asyncErrorHandler(async (req, res, next) => {
-  const states = await CompanyLocation.findAll({
-    where: {
-      companyId: req.user.company.id,
-    },
-    include: {
-      model: State,
-      attributes: ["id", "name"],
-    },
-  });
+exports.companyLocation = asyncErrorHandler(async (req, res, next) => {
+  const { id } = req.query;
+  console.log(id);
+
+  let details;
+
+  if (id) {
+    const companyLocation = await CompanyLocation.findOne({
+      where: { id: id },
+      include: [
+        {
+          model: Company,
+          attributes: ["name"],
+        },
+        {
+          model: State,
+          attributes: ["id", "name"],
+        },
+        {
+          model: CompanyDistrict,
+          include: [
+            {
+              model: District,
+              attributes: ["id", "name"], // Fetch only necessary fields
+            },
+          ],
+        },
+      ],
+    });
+
+    if (!companyLocation) {
+      return next(new CustomError("Company location not found", 404));
+    }
+
+    console.log("Company Location details", companyLocation);
+
+    details = {
+      companyLocationId: companyLocation.id,
+      state: companyLocation.state.name,
+      stateId: companyLocation.state.id,
+      districts: companyLocation.company_districts.map((entry) => ({
+        id: entry.district.id,
+        name: entry.district.name,
+      })),
+      createdAt: format(
+        new Date(companyLocation.createdAt),
+        "dd-MM-yyyy HH:mm:ss"
+      ),
+      updatedAt: format(
+        new Date(companyLocation.updatedAt),
+        "dd-MM-yyyy HH:mm:ss"
+      ),
+    };
+  } else {
+    const companyLocation = await CompanyLocation.findAll({
+      where: {
+        companyId: req.user.company.id,
+      },
+      include: [
+        {
+          model: State,
+          attributes: ["id", "name"],
+        },
+      ],
+    });
+
+    if (!companyLocation) {
+      return next(new CustomError("Company location not found", 404));
+    }
+
+    details = companyLocation.map((ele) => {
+      const obj = {
+        id: ele.id,
+        companyId: ele.companyId,
+        stateName: ele.state.name,
+        createdAt: format(new Date(ele.createdAt), "dd-MM-yyyy"),
+        updatedAt: format(new Date(ele.updatedAt), "dd-MM-yyyy"),
+      };
+
+      return obj;
+    });
+  }
 
   res.status(200).json({
     status: true,
-    userStates: states,
+    companyLocations: details,
     message: "Data Fetched Successfully",
   });
 });
+
+exports.updateCompanyLocation = asyncErrorHandler(
+  async (req, res, next, transaction) => {
+    const { stateId, districts } = req.body;
+    const companyId = req.user.companyId;
+    const userId = req.user.id;
+
+    // Check if CompanyLocation exists
+    let companyLocation = await CompanyLocation.findOne({
+      where: { companyId, stateId },
+      transaction,
+    });
+
+    if (!companyLocation) {
+      companyLocation = await CompanyLocation.create(
+        {
+          companyId,
+          stateId,
+          userId,
+        },
+        { transaction }
+      );
+    }
+
+    // Remove existing districts to avoid duplicates
+    await CompanyDistrict.destroy({
+      where: { companyLocationId: companyLocation.id },
+      transaction,
+    });
+
+    // Insert new districts
+    const districtEntries = districts.map((districtId) => ({
+      companyLocationId: companyLocation.id,
+      districtId,
+    }));
+
+    await CompanyDistrict.bulkCreate(districtEntries, { transaction });
+
+    res.status(200).json({ message: "Company location updated successfully." });
+  },
+  true
+);
+
+exports.deleteCompanyLocation = asyncErrorHandler(
+  async (req, res, next, transaction) => {
+    const companyLocationId = req.params.companyLocationId;
+
+    const companyLocation = await CompanyLocation.destroy({
+      where: { id: companyLocationId },
+      transaction,
+    });
+
+    await CompanyDistrict.destroy({
+      where: { companyLocationId },
+      transaction,
+    });
+
+    if (companyLocation === 0) {
+      return next(new CustomError("Company location not found", 404));
+    }
+
+    res.status(200).json({ message: "Company Location deleted successfully" });
+  },
+  true
+);
+
+exports.companyFactory = asyncErrorHandler(async (req, res, next) => {
+  const { id } = req.query;
+  console.log(id);
+
+  let details;
+
+  if (id) {
+    const companyFactory = await Factory.findOne({
+      where: { id: id },
+      include: [
+        {
+          model: Company,
+          attributes: ["name"],
+        },
+        {
+          model: State,
+          attributes: ["id", "name"],
+        },
+      ],
+    });
+
+    if (!companyFactory) {
+      return next(new CustomError("Comapny Factory not found", 404));
+    }
+
+    console.log("Company Location details", companyFactory);
+
+    const createdByUser = await User.findOne({
+      where: { id: companyFactory.createdBy },
+      attributes: ["name"],
+    });
+
+    const modifiedByUser = await User.findOne({
+      where: { id: companyFactory.lastModifiedBy },
+      attributes: ["name"],
+    });
+
+    details = {
+      factoryId: companyFactory.id,
+      factoryName: companyFactory.name,
+      stateName: companyFactory.state.name,
+      stateId: companyFactory.state.id,
+      companyName: companyFactory.company.name,
+      createdBy: createdByUser.name,
+      lastModifiedBy: modifiedByUser.name,
+      createdAt: format(
+        new Date(companyFactory.createdAt),
+        "dd-MM-yyyy HH:mm:ss"
+      ),
+      updatedAt: format(
+        new Date(companyFactory.updatedAt),
+        "dd-MM-yyyy HH:mm:ss"
+      ),
+    };
+  } else {
+    const companyFactory = await Factory.findAll({
+      where: {
+        companyId: req.user.company.id,
+      },
+      include: [
+        {
+          model: State,
+          attributes: ["id", "name"],
+        },
+      ],
+    });
+
+    if (!companyFactory) {
+      return next(new CustomError("Company Factory not found", 404));
+    }
+
+    details = companyFactory.map((ele) => {
+      const obj = {
+        factoryId: ele.id,
+        factoryName: ele.name,
+        stateId: ele.state.id,
+        stateName: ele.state.name,
+        createdAt: format(new Date(ele.createdAt), "dd-MM-yyyy"),
+        updatedAt: format(new Date(ele.updatedAt), "dd-MM-yyyy"),
+      };
+
+      return obj;
+    });
+  }
+
+  res.status(200).json({
+    status: true,
+    companyFactories: details,
+    message: "Data Fetched Successfully",
+  });
+});
+
+exports.addFactory = asyncErrorHandler(async (req, res, next, transaction) => {
+  const { factoryName, factoryStateId } = req.body;
+
+  if (
+    !factoryName ||
+    typeof factoryName !== "string" ||
+    factoryName.trim() === ""
+  ) {
+    return next(new CustomError("Invalid Factory Name", 404));
+  }
+
+  if (
+    !factoryStateId ||
+    typeof factoryStateId !== "string" ||
+    factoryStateId.trim() === ""
+  ) {
+    return next(new CustomError("Invalid data", 404));
+  }
+
+  const data = await Factory.create(
+    {
+      name: factoryName.trim(),
+      companyId: req.user.companyId,
+      stateId: factoryStateId,
+      createdBy: req.user.id,
+      lastModifiedBy: req.user.id,
+    },
+    { transaction }
+  );
+
+  console.log("Factory created:", data);
+  res.status(201).json({
+    status: true,
+    message: "Factory added successfully",
+  });
+}, true);
+
+exports.updateFactory = asyncErrorHandler(
+  async (req, res, next, transaction) => {
+    const { factoryName, factoryId } = req.body;
+
+    console.log(req.body);
+    const { id } = req.query;
+
+    if (
+      !factoryName ||
+      typeof factoryName !== "string" ||
+      factoryName.trim() === ""
+    ) {
+      return next(new CustomError("Invalid Factory Name", 404));
+    }
+
+    const [updatedRows] = await Factory.update(
+      { name: factoryName.trim(), lastModifiedBy: req.user.id },
+      {
+        where: { id },
+        transaction,
+      }
+    );
+
+    if (updatedRows === 0) {
+      return next(
+        new CustomError("Factory not found or no changes made.", 404)
+      );
+    }
+
+    console.log("Updated factory details:", updatedRows);
+    res.status(200).json({
+      status: true,
+      message: "Factory details updated successfully.",
+    });
+  },
+  true
+);
+
+exports.deleteFactory = asyncErrorHandler(
+  async (req, res, next, transaction) => {
+    const companyFactoryId = req.params.companyFactoryId;
+
+    const factory = await Factory.destroy({
+      where: { id: companyFactoryId },
+    });
+
+    if (factory === 0) {
+      return next(new CustomError("Company Factory not found", 404));
+    }
+
+    res.status(200).json({ message: "Factory deleted successfully" });
+  },
+  true
+);
+
+exports.companyTrader = asyncErrorHandler(async (req, res, next) => {
+  const { id } = req.query;
+  console.log(id);
+
+  let details;
+
+  if (id) {
+    const companyTrader = await Trader.findOne({
+      where: { id: id },
+      include: [
+        {
+          model: Company,
+          attributes: ["name"],
+        },
+      ],
+    });
+
+    if (!companyTrader) {
+      return next(new CustomError("Comapny Trader not found", 404));
+    }
+
+    console.log("Company Trader details", companyTrader);
+
+    const createdByUser = await User.findOne({
+      where: { id: companyTrader.createdBy },
+      attributes: ["name"],
+    });
+
+    const modifiedByUser = await User.findOne({
+      where: { id: companyTrader.lastModifiedBy },
+      attributes: ["name"],
+    });
+
+    details = {
+      traderId: companyTrader.id,
+      traderName: companyTrader.name,
+      companyName: companyTrader.company.name,
+      createdBy: createdByUser.name,
+      lastModifiedBy: modifiedByUser.name,
+      createdAt: format(
+        new Date(companyTrader.createdAt),
+        "dd-MM-yyyy HH:mm:ss"
+      ),
+      updatedAt: format(
+        new Date(companyTrader.updatedAt),
+        "dd-MM-yyyy HH:mm:ss"
+      ),
+    };
+  } else {
+    const companyTrader = await Trader.findAll({
+      where: {
+        companyId: req.user.company.id,
+      },
+    });
+
+    if (!companyTrader) {
+      return next(new CustomError("Company Trader not found", 404));
+    }
+
+    details = companyTrader.map((ele) => {
+      const obj = {
+        traderId: ele.id,
+        traderName: ele.name,
+        createdAt: format(new Date(ele.createdAt), "dd-MM-yyyy"),
+        updatedAt: format(new Date(ele.updatedAt), "dd-MM-yyyy"),
+      };
+
+      return obj;
+    });
+  }
+
+  res.status(200).json({
+    status: true,
+    companyTraders: details,
+    message: "Data Fetched Successfully",
+  });
+});
+
+exports.addTrader = asyncErrorHandler(async (req, res, next, transaction) => {
+  const { traderName } = req.body;
+
+  if (
+    !traderName ||
+    typeof traderName !== "string" ||
+    traderName.trim() === ""
+  ) {
+    return next(new CustomError("Invalid Trader Name", 404));
+  }
+
+  const data = await Trader.create(
+    {
+      name: traderName.trim(),
+      companyId: req.user.companyId,
+      createdBy: req.user.id,
+      lastModifiedBy: req.user.id,
+    },
+    { transaction }
+  );
+
+  console.log("Trader created:", data);
+  res.status(201).json({
+    status: true,
+    message: "Trader added successfully",
+  });
+}, true);
+
+exports.updateTrader = asyncErrorHandler(
+  async (req, res, next, transaction) => {
+    const { traderName, traderId } = req.body;
+
+    console.log(req.body);
+    const { id } = req.query;
+
+    if (
+      !traderName ||
+      typeof traderName !== "string" ||
+      traderName.trim() === ""
+    ) {
+      return next(new CustomError("Invalid trader Name", 404));
+    }
+
+    const [updatedRows] = await Trader.update(
+      { name: traderName.trim(), lastModifiedBy: req.user.id },
+      {
+        where: { id },
+        transaction,
+      }
+    );
+
+    if (updatedRows === 0) {
+      return next(new CustomError("Trader not found or no changes made.", 404));
+    }
+
+    console.log("Updated trader details:", updatedRows);
+    res.status(200).json({
+      status: true,
+      message: "Trader details updated successfully.",
+    });
+  },
+  true
+);
+
+exports.deleteTrader = asyncErrorHandler(
+  async (req, res, next, transaction) => {
+    const companyTraderId = req.params.companyTraderId;
+
+    const trader = await Trader.destroy({
+      where: { id: companyTraderId },
+    });
+
+    if (trader === 0) {
+      return next(new CustomError("Company trader not found", 404));
+    }
+
+    res.status(200).json({ message: "Trader deleted successfully" });
+  },
+  true
+);

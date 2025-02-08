@@ -2,7 +2,7 @@ const { DataTypes, Sequelize } = require("sequelize");
 const sequelize = require("../util/database");
 const { v4: uuidv4 } = require("uuid");
 
-const companyLocation = sequelize.define("company_location", {
+const CompanyLocation = sequelize.define("company_location", {
   id: {
     type: DataTypes.UUID,
     defaultValue: DataTypes.UUIDV4,
@@ -17,6 +17,14 @@ const companyLocation = sequelize.define("company_location", {
       key: "id",
     },
   },
+  userId: {
+    type: DataTypes.UUID,
+    allowNull: false,
+    references: {
+      model: "users",
+      key: "id",
+    },
+  },
   stateId: {
     type: DataTypes.UUID,
     allowNull: false,
@@ -25,14 +33,6 @@ const companyLocation = sequelize.define("company_location", {
       key: "id",
     },
   },
-  districtId: {
-    type: DataTypes.UUID,
-    allowNull: false,
-    references: {
-      model: "districts",
-      key: "id",
-    },
-  },
 });
 
-module.exports = companyLocation;
+module.exports = CompanyLocation;

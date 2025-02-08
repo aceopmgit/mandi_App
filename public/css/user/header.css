@@ -223,6 +223,11 @@ button:hover {
   background-color: #f60014;
 }
 
+.cancelBtn {
+  background: #91cbff;
+  color: black;
+}
+
 .backBtn {
   color: black;
   background-color: white;

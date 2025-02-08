@@ -3,6 +3,7 @@ const Admin = require("./Admin");
 const AdminForgetPassword = require("./AdminForgotPassword");
 const Company = require("./Company");
 const CompanyLocation = require("./CompanyLocation");
+const CompanyDistrict = require("./CompanyDistrict");
 const DeliveryCertificate = require("./DeliveryCertificate");
 const Depot = require("./Depot");
 const DirectTrader = require("./DirectTrader");
@@ -57,20 +58,31 @@ PaddyLoadingEntry.belongsTo(Company, { foreignKey: "companyId" });
 Company.hasMany(MasterTarget, { foreignKey: "companyId", onDelete: "CASCADE" });
 MasterTarget.belongsTo(Company, { foreignKey: "companyId" });
 
-// company location relation
+// User → CompanyLocation
+User.hasMany(CompanyLocation, { foreignKey: "userId" });
+CompanyLocation.belongsTo(User, { foreignKey: "userId" });
+
+// Company → CompanyLocation
 Company.hasMany(CompanyLocation, {
   foreignKey: "companyId",
   onDelete: "CASCADE",
 });
 CompanyLocation.belongsTo(Company, { foreignKey: "companyId" });
 
-// State to UserLocation
+// State → CompanyLocation
 State.hasMany(CompanyLocation, { foreignKey: "stateId" });
 CompanyLocation.belongsTo(State, { foreignKey: "stateId" });
 
-// District to UserLocation
-District.hasMany(CompanyLocation, { foreignKey: "districtId" });
-CompanyLocation.belongsTo(District, { foreignKey: "districtId" });
+// CompanyLocation → CompanyDistrict
+CompanyLocation.hasMany(CompanyDistrict, {
+  foreignKey: "companyLocationId",
+  onDelete: "CASCADE",
+});
+CompanyDistrict.belongsTo(CompanyLocation, { foreignKey: "companyLocationId" });
+
+// District → CompanyDistrict
+District.hasMany(CompanyDistrict, { foreignKey: "districtId" });
+CompanyDistrict.belongsTo(District, { foreignKey: "districtId" });
 
 // User relationships
 User.hasMany(ForgotPassword, { foreignKey: "userId", onDelete: "CASCADE" });

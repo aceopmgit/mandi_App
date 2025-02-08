@@ -13,14 +13,86 @@ const router = express.Router();
 // admin side data
 router.get("/get-states/:Id?", userAuthenticate, adminController.getStates);
 
+router.get("/get-districts", userAuthenticate, adminController.getDistricts);
+
 router.get("/", homeController.home);
 router.get("/manage-account", homeController.manageAccount);
 
 router.get("/details", homeController.viewMenuItemDetails);
 
-router.get("/account-info", userAuthenticate, homeController.accountInfo);
+router.get(
+  "/manage-account/account-info",
+  userAuthenticate,
+  homeController.accountInfo
+);
 
-router.get("/user-states", userAuthenticate, homeController.userStates);
+router.get(
+  "/manage-account/company-location",
+  userAuthenticate,
+  homeController.companyLocation
+);
+
+router.post(
+  "/manage-account/update-company-location",
+  userAuthenticate,
+  homeController.updateCompanyLocation
+);
+
+router.delete(
+  "/manage-account/delete-company-location/:companyLocationId",
+  userAuthenticate,
+  homeController.deleteCompanyLocation
+);
+
+router.get(
+  "/manage-account/company-factory",
+  userAuthenticate,
+  homeController.companyFactory
+);
+
+router.post(
+  "/manage-account/add-factory",
+  userAuthenticate,
+  homeController.addFactory
+);
+
+router.post(
+  "/manage-account/update-factory",
+  userAuthenticate,
+  homeController.updateFactory
+);
+
+router.delete(
+  "/manage-account/delete-factory/:companyFactoryId",
+  userAuthenticate,
+  homeController.deleteFactory
+);
+
+router.get(
+  "/manage-account/company-trader",
+  userAuthenticate,
+  homeController.companyTrader
+);
+
+router.post(
+  "/manage-account/add-Trader",
+  userAuthenticate,
+  homeController.addTrader
+);
+
+router.post(
+  "/manage-account/update-trader",
+  userAuthenticate,
+  homeController.updateTrader
+);
+
+router.delete(
+  "/manage-account/delete-trader/:companyTraderId",
+  userAuthenticate,
+  homeController.deleteTrader
+);
+
+// router.post("/update-user-states", userAuthenticate, homeController.updateUserStates);
 
 // router.get("/check", userAuthenticate);
 

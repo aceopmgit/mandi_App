@@ -264,9 +264,31 @@ main {
   height: calc(100% - 12vh);
   background-color: white;
   border-radius: 10px;
-  padding: 5rem;
+  padding: 2rem;
   /* overflow: hidden; */
   overflow: auto;
+}
+
+/* permissions css */
+.permissions label {
+  font-weight: 400;
+}
+
+.details_section_row {
+  display: flex;
+  gap: 3rem;
+  margin-bottom: 3rem;
+}
+.details_section_row h2 {
+  font-size: 2rem;
+  font-weight: 500;
+  text-align: right;
+}
+
+.details_section_row p {
+  font-size: 2rem;
+  font-weight: 300;
+  text-align: left;
 }
 
 /* permissions css */
@@ -291,6 +313,26 @@ main {
   font-weight: 400;
 }
 
+.details_section_premissions {
+  margin-bottom: 2rem;
+}
+
+.details_section_premissions h2 {
+  font-size: 2rem;
+  font-weight: 500;
+  text-align: left;
+  margin-bottom: 1rem;
+}
+.details_section_premissions ul {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.details_section_premissions li {
+  list-style: disc;
+  font-size: 1.5rem;
+  margin-left: 4rem;
+}
 /*  */
 .form_content {
   display: flex;

@@ -17,6 +17,14 @@ const trader = sequelize.define("trader", {
     type: Sequelize.UUID,
     allowNull: false,
   },
+  createdBy: {
+    type: Sequelize.UUID,
+    allowNull: false,
+  },
+  lastModifiedBy: {
+    type: Sequelize.UUID,
+    allowNull: false,
+  },
 });
 
 module.exports = trader;

@@ -9,10 +9,7 @@ const fPassword = sequelize.define("admin_forgot_password_request", {
     allowNull: false,
     primaryKey: true,
   },
-  createdBy: {
-    type: Sequelize.UUID,
-    allowNull: false,
-  },
+
   userId: {
     type: Sequelize.UUID,
     allowNull: false,

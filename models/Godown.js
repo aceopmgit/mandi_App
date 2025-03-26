@@ -2,34 +2,22 @@ const { DataTypes, Sequelize } = require("sequelize");
 const sequelize = require("../util/database");
 const { v4: uuidv4 } = require("uuid");
 
-const paddyRelease = sequelize.define("paddy_release", {
+const godown = sequelize.define("godown", {
   id: {
     type: Sequelize.UUID,
     defaultValue: DataTypes.UUIDV4,
     allowNull: false,
     primaryKey: true,
   },
-  releaseDate: {
-    type: Sequelize.DATE,
-    allowNull: false,
-  },
-  traderName: {
+  name: {
     type: Sequelize.STRING,
     allowNull: false,
   },
-  qty_qtls: {
-    type: Sequelize.DECIMAL(20, 2),
-    allowNull: false,
-  },
-  qty_bags: {
-    type: Sequelize.INTEGER,
-    allowNull: false,
-  },
-  mandiId: {
+  companyId: {
     type: Sequelize.UUID,
     allowNull: false,
   },
-  traderId: {
+  stateId: {
     type: Sequelize.UUID,
     allowNull: false,
   },
@@ -43,4 +31,4 @@ const paddyRelease = sequelize.define("paddy_release", {
   },
 });
 
-module.exports = paddyRelease;
+module.exports = godown;

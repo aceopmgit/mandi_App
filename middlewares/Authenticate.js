@@ -34,6 +34,7 @@ exports.authenticate = asyncErrorHandler(async (req, res, next) => {
 
   const user = await User.findOne({
     where: { id: decoded.userId },
+
     include: [
       {
         model: Role,
@@ -78,6 +79,8 @@ exports.authenticate = asyncErrorHandler(async (req, res, next) => {
   // };
 
   req.user = user; // Attach user to request object
+
+  // console.log("In the authenticate middleware", req.user);
 
   //company license expiry handle
   if (

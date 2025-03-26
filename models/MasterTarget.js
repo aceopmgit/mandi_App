@@ -13,6 +13,11 @@ const masterTarget = sequelize.define("master_target", {
     type: Sequelize.STRING,
     allowNull: false,
   },
+  mandiId: {
+    type: Sequelize.UUID,
+    allowNull: false,
+    unique: true,
+  },
   targetQtls: {
     type: Sequelize.DECIMAL(20, 2),
     allowNull: false,
@@ -23,6 +28,10 @@ const masterTarget = sequelize.define("master_target", {
   },
   targetBalance: {
     type: Sequelize.DECIMAL(20, 2),
+    allowNull: false,
+  },
+  seasonId: {
+    type: Sequelize.UUID,
     allowNull: false,
   },
   companyId: {

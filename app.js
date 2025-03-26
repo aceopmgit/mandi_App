@@ -5,6 +5,7 @@ const fs = require("fs");
 const morgan = require("morgan");
 require("dotenv").config();
 const cookieParser = require("cookie-parser");
+const serverless = require("serverless-http");
 
 // const sequelize = require("./util/database");
 // const admin = require("./models/admin");
@@ -49,6 +50,7 @@ const globalErrorHandler = require("./controllers/error").errorHandler;
 // );
 
 app.use(cookieParser());
+
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended: true }));
 // app.use(morgan("combined", { stream: accessLogStream }));

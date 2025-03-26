@@ -13,15 +13,11 @@ const riceAcNote = sequelize.define("rice_Ac_Note", {
     type: Sequelize.STRING,
     allowNull: false,
   },
-  depotName: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  },
-  qty_qtls: {
+  qtyQtls: {
     type: Sequelize.DECIMAL(20, 2),
     allowNull: false,
   },
-  qty_bags: {
+  qtyBags: {
     type: Sequelize.INTEGER,
     allowNull: false,
   },
@@ -29,11 +25,19 @@ const riceAcNote = sequelize.define("rice_Ac_Note", {
     type: Sequelize.STRING,
     allowNull: false,
   },
+  seasonId: {
+    type: Sequelize.UUID,
+    allowNull: false,
+  },
   depotId: {
     type: Sequelize.UUID,
     allowNull: false,
   },
   factoryId: {
+    type: Sequelize.UUID,
+    allowNull: false,
+  },
+  companyId: {
     type: Sequelize.UUID,
     allowNull: false,
   },

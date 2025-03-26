@@ -9,19 +9,64 @@ const paddyUnloadingEntry = sequelize.define("paddy_unloading_Entry", {
     allowNull: false,
     primaryKey: true,
   },
-  unloadedQty_qtls: {
-    type: Sequelize.DECIMAL(20, 2),
+  mandiName: {
+    type: Sequelize.STRING,
     allowNull: false,
   },
-  bagsUnloaded: {
+  vehicleNumber: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  rstNumber: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  gunnyBags: {
     type: Sequelize.INTEGER,
     allowNull: false,
   },
-  loadingId: {
+  ppBags: {
+    type: Sequelize.INTEGER,
+    allowNull: false,
+    defaultValue: 0,
+  },
+  totalBags: {
+    type: Sequelize.INTEGER,
+    allowNull: false,
+  },
+  qtlsGross: {
+    type: Sequelize.DECIMAL(20, 2),
+    allowNull: false,
+  },
+  tare: {
+    type: Sequelize.DECIMAL(20, 2),
+    allowNull: false,
+  },
+  nettUnloadedQty_qtls: {
+    type: Sequelize.DECIMAL(20, 2),
+    allowNull: false,
+  },
+  notes: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  mandiId: {
+    type: Sequelize.UUID,
+    allowNull: false,
+  },
+  seasonId: {
     type: Sequelize.UUID,
     allowNull: false,
   },
   factoryId: {
+    type: Sequelize.UUID,
+    allowNull: false,
+  },
+  godownId: {
+    type: Sequelize.UUID,
+    allowNull: false,
+  },
+  companyId: {
     type: Sequelize.UUID,
     allowNull: false,
   },

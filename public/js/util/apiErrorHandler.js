@@ -12,6 +12,11 @@ export function handleApiError(error) {
       localStorage.removeItem("userToken");
       window.location.href = "/login"; // Redirect to login page
     }
+    if (error.response.status === 403) {
+      message = "Access denied";
+
+      window.location.href = "/home"; // Redirect to home page
+    }
   } else if (error.request) {
     // No response from the server
     message = "Unable to connect to the server. Please check your network.";

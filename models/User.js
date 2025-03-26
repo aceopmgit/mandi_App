@@ -40,9 +40,13 @@ const user = sequelize.define("user", {
     type: DataTypes.UUID,
     allowNull: false,
   },
+  isFreezed: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
+  },
   isActive: {
     type: DataTypes.BOOLEAN,
-    allowNull: false,
+    defaultValue: true,
   },
 });
 

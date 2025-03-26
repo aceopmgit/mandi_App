@@ -322,7 +322,7 @@ async function showCompanyUserDetails(e) {
     main_section_container.innerHTML = `
     <div class="create_btn_div">
     <p></p>
-            <button id="update" class="submitBtn">Update</button>
+            <button id="add" class="submitBtn">Add</button>
           </div>
           <div class="main_section_content">
             <ul class="main_section_title">              
@@ -333,8 +333,8 @@ async function showCompanyUserDetails(e) {
           </div>
     `;
 
-    const updateButton = document.getElementById("update");
-    updateButton.addEventListener("click", async (e) => {
+    const addButton = document.getElementById("add");
+    addButton.addEventListener("click", async (e) => {
       try {
         // console.log("hio");
         // window.location.href = `/home/details?tab=manageAccount&menu=companyLocation&method=update&id=null`;
@@ -450,6 +450,245 @@ async function showCompanyUserDetails(e) {
   }
 }
 
+// company seasons data handle
+
+const companySeason = document.getElementById("companySeason");
+companySeason.addEventListener("click", showCompanySeasonDetails);
+async function showCompanySeasonDetails(e) {
+  try {
+    const spinner = document.getElementById("loading_spinner");
+    spinner.style.visibility = "visible";
+
+    //   menu item color change
+    const menu_items = document.getElementsByClassName("menu_item");
+
+    for (let i = 0; i < menu_items.length; i++) {
+      menu_items[i].classList.remove("active");
+    }
+
+    e.target.classList.add("active");
+
+    localStorage.setItem("side_menu_tab_u", "companySeason");
+
+    //content handle
+    const main_section_container = document.getElementById(
+      "main_section_container"
+    );
+
+    main_section_container.innerHTML = `
+    <div class="create_btn_div">
+    <p></p>
+            <button id="add" class="submitBtn">Add</button>
+          </div>
+          <div class="main_section_content">
+            <ul class="main_section_title">              
+            </ul>
+            <div class="main_section_data">
+              
+            </div>
+          </div>
+    `;
+
+    const addButton = document.getElementById("add");
+    addButton.addEventListener("click", async (e) => {
+      try {
+        // console.log("hio");
+        // window.location.href = `/home/details?tab=manageAccount&menu=companyLocation&method=add&id=null`;
+        const spinner = document.getElementById("loading_spinner");
+        // spinner.style.visibility = "visible";
+
+        // const res = await axios.get(`/home/get-states/`, {
+        //   headers: { Authorization: `Bearer ${token}` },
+        // });
+        // spinner.style.visibility = "hidden";
+
+        // const states = res.data.stateDetails;
+
+        main_section_container.innerHTML = `
+<div class="content_area">
+  <div class="create_btn_div">
+    <p></p>
+    <div>
+      <button
+        id="saveSeason"
+        class="submitBtn"
+        type="submit"
+        form="addSeasonForm"
+      >
+        Save
+      </button>
+      <button id="cancelAddButton" class="cancelBtn">Cancel</button>
+    </div>
+  </div>
+
+  <form id="addSeasonForm">
+    <div class="form_content">
+      <div class="error" id="error"></div>
+      <div class="form_control">
+        <label for="season">Season</label>
+        <select id="season" name="season" style=" height: 44px; font-size: 16px; padding: 5px;" required>
+          <option value="" disabled selected>Select a season</option>
+          <option value="Kharif">Kharif</option>
+          <option value="Rabi">Rabi</option>
+        </select>
+
+        <br />
+      </div>
+
+      <div class="form_control">
+        <label for="startDate">Start Date</label>
+        <input type="month" id="startDate" name="startDate" required />
+
+        <br />
+      </div>
+
+      <div class="form_control">
+        <label for="endDate">End Date</label>
+        <input type="month" id="endDate" name="endDate" required />
+
+        <br />
+      </div>
+    </div>
+  </form>
+</div>  
+    `;
+
+        // Get the current year
+        const currentYear = new Date().getFullYear();
+
+        const minYear = currentYear - 2; // Two years before the current year
+        const maxYear = currentYear + 2; // Two years after the current year
+
+        document
+          .getElementById("startDate")
+          .setAttribute("min", `${minYear}-01`);
+        document
+          .getElementById("startDate")
+          .setAttribute("max", `${maxYear}-12`);
+        document.getElementById("endDate").setAttribute("min", `${minYear}-01`);
+        document.getElementById("endDate").setAttribute("max", `${maxYear}-12`);
+
+        document
+          .getElementById("cancelAddButton")
+          .addEventListener("click", () => {
+            document.getElementById("companySeason").click();
+          });
+
+        document
+          .getElementById("addSeasonForm")
+          .addEventListener("submit", async (e) => {
+            try {
+              e.preventDefault();
+
+              const formdata = new FormData(e.target);
+              const data = {};
+              formdata.forEach((value, key) => {
+                data[key] = value;
+              });
+
+              // console.log(data);
+
+              const season = document.getElementById("season").value;
+              const startDate = document.getElementById("startDate").value;
+              const endDate = document.getElementById("endDate").value;
+
+              if (!season || !startDate || !endDate) {
+                document.getElementById("error").innerHTML =
+                  "Please fill all fields!";
+                return;
+              }
+
+              const startYear = startDate.split("-")[0].slice(2); // Get last two digits of start year
+              const endYear = endDate.split("-")[0].slice(2); // Get last two digits of end year
+
+              const abbreviation = `${
+                season.charAt(0).toUpperCase() + season.slice(1)
+              } ${startYear}-${endYear}`;
+
+              data["name"] = abbreviation;
+
+              console.log(data);
+
+              // spinner.style.visibility = "visible";
+              const res = await axios.post(
+                `/home/manage-account/add-season`,
+                data,
+                {
+                  headers: { Authorization: `Bearer ${token}` },
+                }
+              );
+
+              document.getElementById("companySeason").click();
+            } catch (error) {
+              errorHandler(error);
+            }
+          });
+      } catch (error) {
+        errorHandler(error);
+      }
+    });
+
+    //---------------------------------------------------- for showing company season list----------------------------------------------------
+
+    // getting season details
+    const res = await axios.get(`/home/manage-account/company-season`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+
+    const companySeasons = res.data.companySeasons;
+
+    console.log(companySeasons);
+
+    spinner.style.visibility = "hidden";
+
+    if (companySeasons.length < 1) {
+      document.getElementsByClassName("main_section_content")[0].innerHTML = `
+      <div style="margin: auto">
+            <h1 style="font-size: 2.5rem; font-weight: 400; text-align:center;">No season details have been added by the company. Please provide the company season details to access all features. </h1>
+        </div>`;
+      return;
+    }
+
+    const seasonDetailsIndex = (document.getElementsByClassName(
+      "main_section_title"
+    )[0].innerHTML = `
+    <li>Season Name</li>    
+    <li>Updated At</li>
+    `);
+    const seasonDetailsData = (document.getElementsByClassName(
+      "main_section_data"
+    )[0].innerHTML = companySeasons
+      .map((data) => {
+        return `
+
+      <ul class="main_section_data_part" id=${data.seasonId}>
+    <li>${data.name}</li>
+    
+    <li>${data.updatedAt}</li>
+      </ul>
+      `;
+      })
+      .join(""));
+
+    //     //----------------------------------------------------for showing details page of a company season----------------------------------------------------
+
+    const companySeasonsList = Array.from(
+      document.getElementsByClassName("main_section_data_part")
+    );
+
+    companySeasonsList.map((ele) => {
+      ele.addEventListener("click", async (e) => {
+        console.log(e.currentTarget.id, e.currentTarget);
+        const id = e.currentTarget.id;
+
+        window.location.href = `/home/details?tab=manageAccount&menu=companySeason&method=view&id=${id}`;
+      });
+    });
+  } catch (error) {
+    errorHandler(error);
+  }
+}
+
 // factory info data handle
 
 function factoryStateDropdownControl() {
@@ -546,7 +785,7 @@ async function showcompanyFactoryDetails(e) {
     main_section_container.innerHTML = `
     <div class="create_btn_div">
     <p></p>
-            <button id="update" class="submitBtn">Update</button>
+            <button id="add" class="submitBtn">Add</button>
           </div>
           <div class="main_section_content">
             <ul class="main_section_title">              
@@ -557,20 +796,30 @@ async function showcompanyFactoryDetails(e) {
           </div>
     `;
 
-    const updateButton = document.getElementById("update");
-    updateButton.addEventListener("click", async (e) => {
+    const addButton = document.getElementById("add");
+    addButton.addEventListener("click", async (e) => {
       try {
         // console.log("hio");
-        // window.location.href = `/home/details?tab=manageAccount&menu=companyLocation&method=update&id=null`;
+        // window.location.href = `/home/details?tab=manageAccount&menu=companyLocation&method=add&id=null`;
         const spinner = document.getElementById("loading_spinner");
         spinner.style.visibility = "visible";
 
-        const res = await axios.get(`/home/get-states/`, {
+        const res = await axios.get(`/home/manage-account/company-location`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         spinner.style.visibility = "hidden";
 
-        const states = res.data.stateDetails;
+        const states = res.data.companyLocations;
+
+        if (states.length < 1) {
+          document.getElementsByClassName(
+            "main_section_content"
+          )[0].innerHTML = `
+      <div style="margin: auto">
+            <h1 style="font-size: 2.5rem; font-weight: 400; text-align:center;">No company locations have been added. Please enter the company location details to proceed further. </h1>
+        </div>`;
+          return;
+        }
 
         main_section_container.innerHTML = `
 <div class="content_area">
@@ -611,8 +860,8 @@ async function showcompanyFactoryDetails(e) {
               .map((ele) => {
                 return `
             <div class="option" data-id="stateOption">
-              <input type="radio" class="radio" name="" id="${ele.id}" />
-              <label for="${ele.name}">${ele.name}</label>
+              <input type="radio" class="radio" name="" id="${ele.stateId}" />
+              <label for="${ele.stateId}">${ele.stateName}</label>
             </div>
 
             `;
@@ -662,7 +911,7 @@ async function showcompanyFactoryDetails(e) {
               const stateId = document.getElementById("factoryStateId").value;
 
               if (stateId.trim() === "") {
-                console.log();
+                // console.log();
                 document.getElementById("error").innerHTML =
                   "Please select a state.";
                 return;
@@ -723,7 +972,7 @@ async function showcompanyFactoryDetails(e) {
 <li>State</li>
 <li>Updated At</li>
 `);
-    const stateData = (document.getElementsByClassName(
+    const factoryDetailsData = (document.getElementsByClassName(
       "main_section_data"
     )[0].innerHTML = companyFactoryDetails
       .map((data) => {
@@ -750,6 +999,244 @@ async function showcompanyFactoryDetails(e) {
         const id = e.currentTarget.id;
 
         window.location.href = `/home/details?tab=manageAccount&menu=companyFactory&method=view&id=${id}`;
+      });
+    });
+  } catch (error) {
+    errorHandler(error);
+  }
+}
+
+// Godown info data handle
+const companyGodown = document.getElementById("companyGodown");
+companyGodown.addEventListener("click", showcompanyGodownDetails);
+async function showcompanyGodownDetails(e) {
+  try {
+    const spinner = document.getElementById("loading_spinner");
+    spinner.style.visibility = "visible";
+
+    //   menu item color change
+    const menu_items = document.getElementsByClassName("menu_item");
+
+    for (let i = 0; i < menu_items.length; i++) {
+      menu_items[i].classList.remove("active");
+    }
+
+    e.target.classList.add("active");
+
+    localStorage.setItem("side_menu_tab_u", "companyGodown");
+
+    //content handle
+    const main_section_container = document.getElementById(
+      "main_section_container"
+    );
+
+    main_section_container.innerHTML = `
+    <div class="create_btn_div">
+    <p></p>
+            <button id="add" class="submitBtn">Add</button>
+          </div>
+          <div class="main_section_content">
+            <ul class="main_section_title">              
+            </ul>
+            <div class="main_section_data">
+              
+            </div>
+          </div>
+    `;
+
+    const addButton = document.getElementById("add");
+    addButton.addEventListener("click", async (e) => {
+      try {
+        // console.log("hio");
+        // window.location.href = `/home/details?tab=manageAccount&menu=companyLocation&method=add&id=null`;
+        const spinner = document.getElementById("loading_spinner");
+        spinner.style.visibility = "visible";
+
+        const res = await axios.get(`/home/manage-account/company-location/`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        spinner.style.visibility = "hidden";
+
+        const states = res.data.companyLocations;
+
+        main_section_container.innerHTML = `
+<div class="content_area">
+<div class="create_btn_div">
+  <p></p>
+  <div>
+    <button
+      id="saveGodown"
+      class="submitBtn"
+      type="submit"
+      form="addGodownForm"
+    >
+      Save
+    </button>
+    <button id="cancelUpdateButton" class="cancelBtn">Cancel</button>
+  </div>
+</div>
+
+  <form id="addGodownForm">
+    <div class="form_content">
+      <div class="form_control">
+        <label for="GodownName">Enter Godown Name</label>
+        <input
+          type="text"
+          id="godownName"
+          name="godownName"
+          placeholder="Enter Godown Name"
+          required
+        />
+        <br />
+      </div>
+
+      <div class="error" id="error"></div>
+      <div class="selection_area" data-id="stateSelectionArea">
+        <div class="select_box" data-id="selectStateBox">
+          <div class="option_container" data-id="stateOptionContainer">
+            ${states
+              .map((ele) => {
+                return `
+            <div class="option" data-id="stateOption">
+              <input type="radio" class="radio" name="" id="${ele.stateId}" />
+              <label for="${ele.stateId}">${ele.stateName}</label>
+            </div>
+
+            `;
+              })
+              .join("")}
+          </div>
+
+          <div class="selected" data-id="stateSelected">Select State</div>
+          <div class="search_box" data-id="stateSearchBox">
+            <input
+              type="text"
+              placeholder="Start Typing....."
+              id="state_search_box_input"
+            />
+          </div>
+        </div>
+        <br />
+      </div>
+
+      <div class="form_control">
+        <input
+          type="text"
+          id="factoryStateId"
+          name="factoryStateId"          
+          style="display: none"
+        />
+        <br />
+      </div>
+  </form>
+</div>  
+    `;
+
+        factoryStateDropdownControl();
+
+        document
+          .getElementById("cancelUpdateButton")
+          .addEventListener("click", () => {
+            document.getElementById("companyGodown").click();
+          });
+
+        document
+          .getElementById("addGodownForm")
+          .addEventListener("submit", async (e) => {
+            try {
+              e.preventDefault();
+
+              const stateId = document.getElementById("factoryStateId").value;
+
+              if (stateId.trim() === "") {
+                // console.log();
+                document.getElementById("error").innerHTML =
+                  "Please select a state.";
+                return;
+              }
+
+              const formdata = new FormData(e.target);
+              const data = {};
+              formdata.forEach((value, key) => {
+                data[key] = value;
+              });
+
+              console.log(data);
+
+              // spinner.style.visibility = "visible";
+              const res = await axios.post(
+                `/home/manage-account/add-godown`,
+                data,
+                {
+                  headers: { Authorization: `Bearer ${token}` },
+                }
+              );
+
+              document.getElementById("companyGodown").click();
+            } catch (error) {
+              errorHandler(error);
+            }
+          });
+      } catch (error) {
+        errorHandler(error);
+      }
+    });
+
+    //---------------------------------------------------- for showing company Godown list----------------------------------------------------
+
+    // getting Godown details
+    const res = await axios.get(`/home/manage-account/company-godown`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+
+    const companyGodownDetails = res.data.companyGodowns;
+
+    console.log(companyGodownDetails);
+
+    spinner.style.visibility = "hidden";
+
+    if (companyGodownDetails.length < 1) {
+      document.getElementsByClassName("main_section_content")[0].innerHTML = `
+  <div style="margin: auto">
+        <h1 style="font-size: 2.5rem; font-weight: 400; text-align:center;">No Godown details have been added by the company. Please provide the company godown details to access all features. </h1>
+    </div>`;
+      return;
+    }
+
+    const GodownDetailsIndex = (document.getElementsByClassName(
+      "main_section_title"
+    )[0].innerHTML = `
+<li>Godown Name</li>
+<li>State</li>
+<li>Updated At</li>
+`);
+    const godownDetailsData = (document.getElementsByClassName(
+      "main_section_data"
+    )[0].innerHTML = companyGodownDetails
+      .map((data) => {
+        return `
+    
+  <ul class="main_section_data_part" id=${data.godownId}>
+<li>${data.godownName}</li>
+<li>${data.stateName}</li>
+<li>${data.updatedAt}</li>
+  </ul>
+  `;
+      })
+      .join(""));
+
+    //----------------------------------------------------for showing details page of a company Godown----------------------------------------------------
+
+    const companyGodownList = Array.from(
+      document.getElementsByClassName("main_section_data_part")
+    );
+
+    companyGodownList.map((ele) => {
+      ele.addEventListener("click", async (e) => {
+        console.log(e.currentTarget.id, e.currentTarget);
+        const id = e.currentTarget.id;
+
+        window.location.href = `/home/details?tab=manageAccount&menu=companyGodown&method=view&id=${id}`;
       });
     });
   } catch (error) {
@@ -851,7 +1338,7 @@ async function showCompanyTraderDetails(e) {
         document
           .getElementById("cancelUpdateButton")
           .addEventListener("click", () => {
-            document.getElementById("companyTader").click();
+            document.getElementById("companyTrader").click();
           });
 
         document
@@ -894,11 +1381,11 @@ async function showCompanyTraderDetails(e) {
       headers: { Authorization: `Bearer ${token}` },
     });
 
-    console.log(res.data);
+    // console.log(res.data);
 
     const companyTradersDetails = res.data.companyTraders;
 
-    console.log(companyTradersDetails);
+    // console.log(companyTradersDetails);
 
     spinner.style.visibility = "hidden";
 
@@ -952,6 +1439,7 @@ async function showCompanyTraderDetails(e) {
 
 window.addEventListener("DOMContentLoaded", async () => {
   const storedTab = localStorage.getItem("side_menu_tab_u");
+  localStorage.removeItem("side_menu_tab");
   console.log(storedTab);
 
   // Remove 'active' class from all menu items before applying
@@ -964,6 +1452,7 @@ window.addEventListener("DOMContentLoaded", async () => {
     console.log("hello");
     // Get the tab element from localStorage and add the 'active' class
     const tab = document.getElementById(storedTab);
+    console.log(tab);
     if (tab) {
       tab.click();
       // tab.classList.add("active");
@@ -971,6 +1460,7 @@ window.addEventListener("DOMContentLoaded", async () => {
     }
   } else {
     account_info.click();
+    console.log("98989");
     // Default behavior if no tab is stored
     // account_info.classList.add("active");
     // console.log(account_info, account_info.classList);

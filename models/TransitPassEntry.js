@@ -2,50 +2,48 @@ const { DataTypes, Sequelize } = require("sequelize");
 const sequelize = require("../util/database");
 const { v4: uuidv4 } = require("uuid");
 
-const directTrader = sequelize.define("direct_trader", {
+const transitPassEntry = sequelize.define("transit_pass_entry", {
   id: {
     type: Sequelize.UUID,
     defaultValue: DataTypes.UUIDV4,
     allowNull: false,
     primaryKey: true,
   },
-  partyName: {
+  mandiName: {
     type: Sequelize.STRING,
     allowNull: false,
   },
-  inBags: {
+  transitPassNumber: {
     type: Sequelize.INTEGER,
     allowNull: false,
   },
-  gross: {
+
+  transitPassBags: {
     type: Sequelize.INTEGER,
     allowNull: false,
   },
-  bagWtInKg: {
+  transitPassQty_qtls: {
     type: Sequelize.DECIMAL(20, 2),
     allowNull: false,
   },
-  percent: {
-    type: Sequelize.DECIMAL(10, 2),
-    allowNull: false,
-  },
-  specialCuttingInKg: {
-    type: Sequelize.DECIMAL(20, 2),
-    allowNull: false,
-  },
-  faq: {
-    type: Sequelize.DECIMAL(20, 2),
-    allowNull: false,
-  },
-  nettIn: {
-    type: Sequelize.DECIMAL(20, 2),
-    allowNull: false,
-  },
-  traderId: {
-    type: Sequelize.UUID,
+  uploadTPCopy: {
+    type: Sequelize.STRING,
     allowNull: false,
   },
   factoryId: {
+    type: Sequelize.UUID,
+    allowNull: false,
+  },
+
+  seasonId: {
+    type: Sequelize.UUID,
+    allowNull: false,
+  },
+  mandiId: {
+    type: Sequelize.UUID,
+    allowNull: false,
+  },
+  companyId: {
     type: Sequelize.UUID,
     allowNull: false,
   },
@@ -59,7 +57,4 @@ const directTrader = sequelize.define("direct_trader", {
   },
 });
 
-module.exports = directTrader;
-
-// model name should be like DirectTrader.js
-// table name is like direct_trader
+module.exports = transitPassEntry;

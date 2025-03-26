@@ -9,19 +9,39 @@ const deliveryCertificate = sequelize.define("delivery_certificate", {
     allowNull: false,
     primaryKey: true,
   },
-  dc_number: {
+  dcNumber: {
     type: Sequelize.STRING,
     allowNull: false,
   },
-  depot_name: {
+  depotName: {
     type: Sequelize.STRING,
     allowNull: false,
   },
-  qty_qtls: {
+  qtyQtls: {
     type: Sequelize.DECIMAL(20, 2),
     allowNull: false,
   },
+  dcBalance: {
+    type: Sequelize.DECIMAL(20, 2),
+    allowNull: false,
+  },
+  isActive: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: true,
+  },
+  seasonId: {
+    type: Sequelize.UUID,
+    allowNull: false,
+  },
   factoryId: {
+    type: Sequelize.UUID,
+    allowNull: false,
+  },
+  depotId: {
+    type: Sequelize.UUID,
+    allowNull: false,
+  },
+  companyId: {
     type: Sequelize.UUID,
     allowNull: false,
   },

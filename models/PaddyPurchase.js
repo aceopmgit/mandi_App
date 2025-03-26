@@ -9,15 +9,12 @@ const paddyPurchase = sequelize.define("paddy_purchase", {
     allowNull: false,
     primaryKey: true,
   },
-  purchaseDate: {
-    type: Sequelize.DATE,
-    allowNull: false,
-  },
+
   mandiName: {
     type: Sequelize.STRING,
     allowNull: false,
   },
-  qty_qtls: {
+  purchaseQtlsGross: {
     type: Sequelize.DECIMAL(20, 2),
     allowNull: false,
   },
@@ -34,7 +31,7 @@ const paddyPurchase = sequelize.define("paddy_purchase", {
     type: Sequelize.DECIMAL(20, 2),
     allowNull: false,
   },
-  faq: {
+  faqQtls: {
     type: Sequelize.DECIMAL(20, 2),
     allowNull: false,
   },
@@ -42,12 +39,27 @@ const paddyPurchase = sequelize.define("paddy_purchase", {
     type: Sequelize.INTEGER,
     allowNull: false,
   },
-  nettPurchaseQty_qtls: {
+  nettPurchaseQtyQtls: {
     type: Sequelize.DECIMAL(20, 2),
     allowNull: false,
   },
   uploadHisab: {
     type: Sequelize.STRING,
+    allowNull: false,
+  },
+  quantityLoaded: {
+    type: Sequelize.DECIMAL(20, 2),
+    allowNull: false,
+    defaultValue: 0,
+  },
+
+  seasonId: {
+    type: Sequelize.UUID,
+    allowNull: false,
+  },
+
+  companyId: {
+    type: Sequelize.UUID,
     allowNull: false,
   },
   factoryId: {

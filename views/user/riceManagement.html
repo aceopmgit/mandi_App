@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Paddy Management</title>
+    <link rel="stylesheet" href="/css/user/header.css" />
+    <link rel="stylesheet" href="/css/user/paddyManagement.css" />
+    <script
+      src="https://kit.fontawesome.com/65f44f413a.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <header>
+      <div class="main_header">
+        <a href="/home">
+          <div class="logo">
+            <img src="/images/newLogo.png" alt="logo" />
+            <h2 class="logo_text">Mandi Management</h2>
+          </div>
+        </a>
+        <div class="main_header_settings">
+          <img src="/images/setting.png" alt="setting" id="settings_icon" />
+          <img src="/images/profile.png" alt="profile" id="profile_icon" />
+        </div>
+      </div>
+
+      <!--settings menu  -->
+      <div class="settings_menu" id="setting_menu">
+        <div class="settings_menu_inner">
+          <div class="setting_links">
+            <img
+              src="/images/setting.png"
+              alt="settings"
+              class="settings_icon"
+            />
+            <a href="/home/manage-account">
+              Manage Account
+              <img src="/images/arrow.png" alt="arrow" width="10px" />
+            </a>
+          </div>
+
+          <div class="setting_links">
+            <img src="/images/users.png" alt="logout" class="settings_icon" />
+            <a href="/home/manage-user">
+              Manage Users
+              <img src="/images/arrow.png" alt="arrow" width="10px" />
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- profile  menu -->
+      <div class="settings_menu" id="profile_menu">
+        <!-- <div id="dark_btn">
+            <span></span>
+          </div> -->
+        <div class="settings_menu_inner">
+          <div class="user_profile">
+            <img src="/images/profile.png" alt="profile" />
+            <div>
+              <a href="/home/profile">Profile</a>
+            </div>
+          </div>
+
+          <div class="setting_links">
+            <img src="/images/logout.png" alt="logout" class="settings_icon" />
+            <a href="#">
+              Logout
+              <img src="/images/arrow.png" alt="arrow" width="10px" />
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <nav>
+        <div class="container">
+          <ul>
+            <a href="/home"><li>Home</li></a>
+            <a href="/home/paddy-management"><li>Paddy Management</li></a>
+            <a href="/home/trader-management"><li>Trader Management</li></a>
+            <a href="/home/rice-management"
+              ><li class="menu_active">Rice Management</li></a
+            >
+            <a href="/home/reports"><li>Reports</li></a>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <div class="side_section">
+        <div>
+          <h2 id="delivery_certificate" class="menu_item">
+            Delivery Certificate
+          </h2>
+        </div>
+
+        <div>
+          <h2 id="factory_rice_loading" class="menu_item">
+            Factory Rice Loading
+          </h2>
+        </div>
+
+        <div>
+          <h2 id="rice_ac_note" class="menu_item">Rice Ac Note</h2>
+        </div>
+      </div>
+
+      <div class="main_section">
+        <div id="loading_spinner">
+          <img src="/images/loading7.gif" alt="Loading..." />
+        </div>
+
+        <div id="main_section_container"></div>
+      </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.5.0/axios.min.js"></script>
+    <script src="/js/user/headerSettings.js"></script>
+    <script type="module" src="/js/user/riceManagement.js"></script>
+  </body>
+</html>

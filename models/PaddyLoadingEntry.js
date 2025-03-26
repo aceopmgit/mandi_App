@@ -9,16 +9,8 @@ const paddyLoadingEntry = sequelize.define("paddy_loading_Entry", {
     allowNull: false,
     primaryKey: true,
   },
-  loadingDate: {
-    type: Sequelize.DATE,
-    allowNull: false,
-  },
   mandiName: {
     type: Sequelize.STRING,
-    allowNull: false,
-  },
-  transitPassNumber: {
-    type: Sequelize.INTEGER,
     allowNull: false,
   },
   vehicleNumber: {
@@ -29,16 +21,12 @@ const paddyLoadingEntry = sequelize.define("paddy_loading_Entry", {
     type: Sequelize.INTEGER,
     allowNull: false,
   },
-  transitPassBags: {
-    type: Sequelize.INTEGER,
+  seasonId: {
+    type: Sequelize.UUID,
     allowNull: false,
   },
-  transitPassQty_qtls: {
-    type: Sequelize.DECIMAL(20, 2),
-    allowNull: false,
-  },
-  uploadVehiclePhoto: {
-    type: Sequelize.STRING,
+  factoryId: {
+    type: Sequelize.UUID,
     allowNull: false,
   },
   mandiId: {

@@ -276,12 +276,13 @@ main {
 
 .details_section_row {
   display: flex;
+  justify-content: space-between;
   gap: 3rem;
   margin-bottom: 3rem;
 }
 .details_section_row h2 {
   font-size: 2rem;
-  font-weight: 500;
+  font-weight: 600;
   text-align: right;
 }
 
@@ -289,6 +290,13 @@ main {
   font-size: 2rem;
   font-weight: 300;
   text-align: left;
+}
+
+.details_section_row a {
+  font-size: 2rem;
+  font-weight: 300;
+  text-align: left;
+  color: #4a91d9;
 }
 
 /* permissions css */
@@ -307,7 +315,7 @@ main {
   height: 20px;
 }
 
-.permissions #error {
+.error {
   font-size: 1.5rem;
   color: red;
   font-weight: 400;
@@ -356,6 +364,113 @@ input {
   font-size: 15px;
   border-radius: 4px;
   height: 40px;
+}
+
+/* dropdown css */
+.select_box {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  position: relative; /* Key for absolute positioning of child elements */
+}
+.select_box .option_container {
+  width: 100%;
+  max-height: 0;
+  opacity: 0;
+  transition: all 0.4s;
+  border-radius: 8px;
+  overflow: hidden;
+  order: 1;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 10;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+.select_box .option,
+.selected {
+  padding: 0.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+.select_box .selected {
+  font-size: 2rem;
+  font-weight: 400;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  position: relative;
+  order: 0;
+}
+.select_box .option .radio {
+  display: none;
+}
+.select_box label {
+  cursor: pointer;
+}
+.select_box .option:hover {
+  background-color: #e2e0e0;
+}
+.selected::after {
+  content: "";
+  background: url("../../images/down-arrow.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: absolute;
+  height: 100%;
+  width: 20px;
+  right: 10px;
+  top: 8px;
+  transition: all 0.4s;
+}
+.select_box .option_container.active {
+  max-height: 200px;
+  opacity: 1;
+  overflow-y: scroll;
+  margin-top: 54px;
+}
+
+.select_box .option_container.active + .selected::after {
+  transform: rotateX(180deg);
+  top: -7px;
+}
+
+.select_box .option_container::-webkit-scrollbar {
+  width: 8px;
+  border-radius: 0 8px 8px 0;
+}
+
+.select_box .option_container::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 0 8px 8px 0;
+}
+
+/* search box */
+
+.search_box input {
+  width: 100%;
+  padding: 2px 0px;
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  position: absolute;
+  border-radius: 8px 8px 0 0;
+  z-index: 100;
+  border: 2px solid #ccc;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.4s;
+}
+
+.search_box input:focus {
+  outline: none;
+}
+
+.select_box .option_container.active ~ .search_box input {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 #loading_spinner {

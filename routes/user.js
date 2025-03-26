@@ -3,8 +3,9 @@ const express = require("express");
 const userController = require("../controllers/user");
 
 const userAuthenticate = require("../middlewares/Authenticate").authenticate;
-const userPermissions = require("../util/rolePermissions").rolePermissions;
-const authorize = require("../util/rolePermissions").authorize;
+const userPermissions =
+  require("../middlewares/rolePermissions").rolePermissions;
+const authorize = require("../middlewares/rolePermissions").authorize;
 const { loginLimiter } = require("../middlewares/rateLimiters");
 
 const router = express.Router();

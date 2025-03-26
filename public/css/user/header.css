@@ -21,12 +21,45 @@ body {
   flex-direction: column;
 }
 
-a {
-  text-decoration: none;
+/* buttons */
+button {
+  padding: 1rem 2rem;
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: #fff;
+  border: none;
+  transition: 0.2s ease-in-out;
+  border-radius: 4px;
+  background-color: #ccc;
 }
 
-ul {
-  list-style: none;
+button:hover {
+  opacity: 0.8;
+  transition: 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.submitBtn {
+  background: #1c78d4;
+  color: #fff;
+}
+
+.cancelBtn {
+  background: #91cbff;
+  color: black;
+}
+
+.deleteBtn {
+  background-color: #f60014;
+}
+
+.backBtn {
+  color: black;
+  background-color: white;
+}
+
+.backBtn:hover {
+  text-decoration: underline;
 }
 
 /* color schemes */
@@ -51,6 +84,7 @@ header {
   box-shadow: 5px 5px 5px rgba(1, 1, 1, 0.08);
   background-color: var(--bg-color);
 }
+
 .main_header {
   display: flex;
   align-items: center;
@@ -58,22 +92,27 @@ header {
   padding: 1rem;
   border-bottom: 1px solid;
 }
+
 .main_header a {
   text-decoration: none;
   color: var(--text-color);
 }
+
 .main_header .logo {
   display: flex;
   align-items: center;
   gap: 1rem;
 }
+
 .main_header .logo img {
   height: 5rem;
   cursor: pointer;
 }
+
 .main_header .logo h2 {
   font-size: 3rem;
 }
+
 .main_header_settings {
   display: flex;
   align-items: center;
@@ -81,6 +120,7 @@ header {
   gap: 3rem;
   margin-right: 2rem;
 }
+
 .main_header_settings img {
   width: 40px;
   cursor: pointer;
@@ -98,6 +138,7 @@ nav ul {
   gap: 3rem;
   flex-wrap: wrap;
 }
+
 nav ul li {
   color: #e7f3ff;
   font-size: 2.5rem;
@@ -126,6 +167,7 @@ nav ul .menu_active {
   right: 1%;
   transition: max-height 0.3s;
 }
+
 .settings_menu_height {
   max-height: 450px;
 }
@@ -133,6 +175,7 @@ nav ul .menu_active {
 .settings_menu_inner {
   padding: 20px;
 }
+
 .settings_menu_inner .user_profile {
   border-bottom: 1px solid black;
   padding-bottom: 10px;
@@ -157,11 +200,13 @@ nav ul .menu_active {
   align-items: center;
   margin: 15px 0;
 }
+
 .setting_links .settings_icon {
   width: 38px;
   margin-right: 10px;
   border-radius: 50%;
 }
+
 .setting_links a {
   display: flex;
   flex: 1;
@@ -191,47 +236,22 @@ nav ul .menu_active {
   border-radius: 50%;
   display: inline-block;
 }
+
 #dark_btn.dark_btn_on {
   padding-left: 23px;
   background: #0a0a0a;
 }
 
-/* buttons */
-button {
-  padding: 1rem 2rem 1rem 2rem;
-  font-size: 1.6rem;
-  font-weight: 500;
-  color: #fff;
-  border: none;
-  transition: 0.2s ease-in-out;
-  border-radius: 4px;
-  background-color: #ccc;
-}
-
-button:hover {
-  opacity: 0.8;
-  transition: 0.2s ease-in-out;
-  cursor: pointer;
-}
-
-.submitBtn {
-  background: #1c78d4;
-  color: #fff;
-}
-
-.deleteBtn {
-  background-color: #f60014;
-}
-
-.cancelBtn {
-  background: #91cbff;
-  color: black;
-}
-
-.backBtn {
-  color: black;
-  background-color: white;
-}
-.backBtn:hover {
-  text-decoration: underline;
+select {
+  height: 40px;
+  padding: 5px;
+  font-size: 2rem;
+  font-weight: 400;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  max-width: 100%; /* Ensures it doesn't go beyond the container */
+  overflow: hidden; /* Prevents content from spilling */
+  text-overflow: ellipsis; /* Adds "..." if text is too long */
+  white-space: nowrap; /* Prevents wrapping */
 }

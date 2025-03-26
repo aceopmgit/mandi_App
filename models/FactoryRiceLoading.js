@@ -2,47 +2,53 @@ const { DataTypes, Sequelize } = require("sequelize");
 const sequelize = require("../util/database");
 const { v4: uuidv4 } = require("uuid");
 
-const subUser = sequelize.define("sub-user", {
+const factoryRiceLoading = sequelize.define("factory_rice_loading", {
   id: {
     type: Sequelize.UUID,
     defaultValue: DataTypes.UUIDV4,
     allowNull: false,
     primaryKey: true,
   },
-  Name: {
+  vehicleNumber: {
     type: Sequelize.STRING,
     allowNull: false,
   },
-  Email: {
-    type: Sequelize.STRING,
-    unique: true,
+  qtyBags: {
+    type: Sequelize.INTEGER,
     allowNull: false,
   },
-  Phone: {
-    type: Sequelize.STRING,
-    unique: true,
+  qtyQtls: {
+    type: Sequelize.DECIMAL(20, 2),
     allowNull: false,
   },
-  Password: {
-    type: Sequelize.STRING,
+  dcId: {
+    type: Sequelize.UUID,
+    allowNull: false,
+  },
+  seasonId: {
+    type: Sequelize.UUID,
     allowNull: false,
   },
   factoryId: {
     type: Sequelize.UUID,
     allowNull: false,
   },
-  roleType: {
+  depotId: {
     type: Sequelize.UUID,
     allowNull: false,
   },
-  roleId: {
+  companyId: {
     type: Sequelize.UUID,
     allowNull: false,
   },
-  userId: {
+  createdBy: {
+    type: Sequelize.UUID,
+    allowNull: false,
+  },
+  lastModifiedBy: {
     type: Sequelize.UUID,
     allowNull: false,
   },
 });
 
-module.exports = subUser;
+module.exports = factoryRiceLoading;
